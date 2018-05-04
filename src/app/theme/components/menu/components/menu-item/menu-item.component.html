@@ -1,0 +1,6 @@
+<li *ngIf="!menuItem.Hidden" [title]="menuItem.Title">
+  <a [routerLink]="menuItem.Url">
+    {{ menuItem.Title }}
+    <span class="sub-icon fa {{ menuItem.Icon }}"></span>
+  </a>
+</li>

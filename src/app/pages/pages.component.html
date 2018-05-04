@@ -1,5 +1,7 @@
 <div id="wrapper">
-  <app-sidebar (sidebarExpanded)="sidebarExpanded($event)"></app-sidebar>
+  <app-sidebar [menuDefinition]="PAGES_MENU"
+    (sidebarExpanded)="sidebarExpanded($event)"
+  ></app-sidebar>
   <div id="page-content-wrapper">
       <div class="page-content" [ngClass]="{'page-content-shrinked':isSidebarExpanded}">
         <div class="row">

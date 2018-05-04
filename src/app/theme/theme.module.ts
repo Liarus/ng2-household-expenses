@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import {
+    MenuItemComponent,
+    MenuComponent,
     SidebarComponent
 } from './components';
 
 const THEME_COMPONENTS = [
+    MenuItemComponent,
+    MenuComponent,
     SidebarComponent
 ];
 
@@ -14,7 +19,8 @@ const THEME_COMPONENTS = [
         THEME_COMPONENTS
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule
     ],
     exports: [
         THEME_COMPONENTS
