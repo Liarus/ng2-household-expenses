@@ -31,6 +31,12 @@
             "styles": [
               {
                 "input": "src/styles.css"
+              },
+              {
+                "input": "./node_modules/bootstrap/scss/bootstrap.scss"
+              },
+              {
+                "input": "./node_modules/font-awesome/scss/font-awesome.scss" 
               }
             ],
             "scripts": []
