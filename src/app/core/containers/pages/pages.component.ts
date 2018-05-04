@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PAGES_MENU } from './pages.menu';
+import { MENU } from '../../models/menu.model';
 
 @Component({
   selector: 'app-pages',
@@ -8,7 +8,7 @@ import { PAGES_MENU } from './pages.menu';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
-  readonly PAGES_MENU = PAGES_MENU;
+  readonly PAGES_MENU = MENU;
   isSidebarExpanded: Boolean = false;
 
   constructor() {

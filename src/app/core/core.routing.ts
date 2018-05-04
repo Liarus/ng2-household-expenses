@@ -1,11 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-import { PagesComponent } from './pages.component';
+import { PagesComponent } from './containers';
 
 export const routes: Routes = [
     {
-        path: 'pages',
+        path: 'core',
         component: PagesComponent
     }
 ];

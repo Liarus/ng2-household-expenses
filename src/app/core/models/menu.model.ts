@@ -1,4 +1,4 @@
-export const PAGES_MENU = [
+export const MENU = [
     {
         path: 'pages',
         children: [
@@ -15,7 +15,7 @@ export const PAGES_MENU = [
                 path: 'app-expenses',
                 data: {
                     title: 'Expenses',
-                    icon: 'fa-dollar-sign',
+                    icon: 'fa-home',
                     permission: ['CanSeeExpenses'],
                     order: 100
                 }
