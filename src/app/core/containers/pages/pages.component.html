@@ -1,9 +1,10 @@
 <div id="wrapper">
-  <app-sidebar [menuDefinition]="PAGES_MENU"
-    (sidebarExpanded)="sidebarExpanded($event)"
+  <app-sidebar [menuItems]="menuItems|async"
+    (sidebarExpanded)="expandSidebar()"
+    (sidebarCollapsed)="collapseSidebar()"
   ></app-sidebar>
   <div id="page-content-wrapper">
-      <div class="page-content" [ngClass]="{'page-content-shrinked':isSidebarExpanded}">
+      <div class="page-content" [ngClass]="{ 'page-content-shrinked':(isSidebarExpanded|async) }">
         <div class="row">
           <div class="col-md-12">
             <p class="well lead">An Experiment using the sidebar template from startbootstrap.com which I integrated in my website (<a href="http://animeshmanglik.name">animeshmanglik.name</a>)</p>

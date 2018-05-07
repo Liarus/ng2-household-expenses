@@ -1,23 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 import { MENU } from '../../models/menu.model';
+import * as fromRoot from '../../../reducers';
+import * as pages from '../../actions/pages';
+import { MenuItem } from '../../models/menuItem.model';
 
 @Component({
   selector: 'app-pages',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
   readonly PAGES_MENU = MENU;
-  isSidebarExpanded: Boolean = false;
+  isSidebarExpanded: Observable<Boolean>;
+  menuItems: Observable<MenuItem[]>;
 
-  constructor() {
+  constructor(private store: Store<fromRoot.State>,
+              private router: Router) {
+    this.isSidebarExpanded = store.pipe(select(fromRoot.getIsSidebarExpanded));
+    this.menuItems = store.pipe(select(fromRoot.getMenuItems));
   }
 
   ngOnInit() {
+    this.store.dispatch(new pages.ApplyMenuDefinition(this.PAGES_MENU));
   }
 
-  sidebarExpanded(event: Boolean): void {
-    this.isSidebarExpanded = event;
+  expandSidebar(): void {
+    this.store.dispatch(new pages.ExpandSidebar());
+  }
+
+  collapseSidebar(): void {
+    this.store.dispatch(new pages.CollapseSidebar());
   }
 }

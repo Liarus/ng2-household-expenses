@@ -1,13 +1,15 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
   @Input() menuDefinition: any;
-  @Output() sidebarExpanded = new EventEmitter<boolean>();
+  @Output() sidebarExpanded = new EventEmitter();
+  @Output() sidebarCollapsed = new EventEmitter();
 
   private isSidebarExpanded = false;
 
@@ -19,6 +21,10 @@ export class SidebarComponent implements OnInit {
 
   expandCollapse() {
     this.isSidebarExpanded = !this.isSidebarExpanded;
-    this.sidebarExpanded.emit(this.isSidebarExpanded);
+    if (this.isSidebarExpanded) {
+      this.sidebarExpanded.emit();
+    } else {
+      this.sidebarCollapsed.emit();
+    }
   }
 }
