@@ -11,6 +11,12 @@ import { AppComponent } from './core/containers';
 import { CoreModule } from './core/core.module';
 import { reducers, metaReducers } from './reducers';
 import { PagesEffects } from './core/effects/pages';
+import { AppConfigDev } from './shared/configs/appConfig.dev';
+import { HttpService } from './shared/services/http.service';
+
+const APP_PROVIDERS = [
+  HttpService
+];
 
 @NgModule({
   declarations: [
@@ -25,7 +31,11 @@ import { PagesEffects } from './core/effects/pages';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([PagesEffects]),
   ],
-  providers: [],
+  providers: [
+    APP_PROVIDERS,
+    { provide: 'IAppConfig', useClass: AppConfigDev }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

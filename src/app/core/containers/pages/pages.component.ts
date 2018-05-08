@@ -19,8 +19,7 @@ export class PagesComponent implements OnInit {
   isSidebarExpanded: Observable<Boolean>;
   menuItems: Observable<MenuItem[]>;
 
-  constructor(private store: Store<fromRoot.State>,
-              private router: Router) {
+  constructor(private store: Store<fromRoot.State>) {
     this.isSidebarExpanded = store.pipe(select(fromRoot.getIsSidebarExpanded));
     this.menuItems = store.pipe(select(fromRoot.getMenuItems));
   }
