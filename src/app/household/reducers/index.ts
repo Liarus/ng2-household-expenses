@@ -22,12 +22,12 @@ export const getHouseholdEntitiesState = createSelector(
     state => state.households
 );
 
-// export const {
-//     selectIds: getBookIds,
-//     selectEntities: getBookEntities,
-//     selectAll: getAllBooks,
-//     selectTotal: getTotalBooks,
-// } = fromHouseholds.adapter.getSelectors(getHouseholdEntitiesState);
+export const {
+    selectIds: getHouseholdIds,
+    selectEntities: getHouseholdEntities,
+    selectAll: getAllHouseholds,
+    selectTotal: getTotalHouseholds,
+} = fromHouseholds.adapter.getSelectors(getHouseholdEntitiesState);
 
 export const getHouseholdsLoading = createSelector(
     getHouseholdEntitiesState,

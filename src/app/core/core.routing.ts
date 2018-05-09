@@ -1,3 +1,4 @@
+
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
@@ -5,8 +6,11 @@ import { PagesComponent } from './containers';
 
 export const routes: Routes = [
     {
-        path: 'core',
-        component: PagesComponent
+        path: 'pages',
+        component: PagesComponent,
+        children: [
+            { path: 'app-households', loadChildren: '../household/household.module#HouseholdModule' }
+        ]
     }
 ];
 

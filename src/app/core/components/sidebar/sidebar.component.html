@@ -1,7 +1,7 @@
 <div id="sidebar-wrapper" [ngClass]="(isSidebarExpanded)?'sidebar-wrapper-expanded':'sidebar-wrapper-collapsed'">
     <ul id="sidebar-menu" class="sidebar-nav">
         <li class="sidebar-brand">
-            <a id="menu-toggle" href="#" (click)="expandCollapse()">
+            <a id="menu-toggle" [routerLink]="" (click)="expandCollapse()">
                 Menu<span id="main-icon" class="fa fa-align-justify"></span>
             </a>
         </li>
