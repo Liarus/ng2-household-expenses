@@ -8,6 +8,7 @@ import { MenuItem } from '../models/menuItem.model';
 
 @Injectable()
 export class PagesEffects {
+
     @Effect()
     menuItems = this.actions.pipe(
         ofType(PagesActionTypes.ApplyMenuDefinition),

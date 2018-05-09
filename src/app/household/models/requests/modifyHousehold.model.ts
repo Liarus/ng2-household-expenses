@@ -1,11 +1,11 @@
 export interface ModifyHousehold {
-    Id: number;
-    Name: string;
-    Symbol: string;
-    Description: string;
-    Street: string;
-    City: string;
-    Country: string;
-    ZipCode: string;
-    Version: number;
+    id: number;
+    name: string;
+    symbol: string;
+    description: string;
+    street: string;
+    city: string;
+    country: string;
+    zipCode: string;
+    version: number;
 }

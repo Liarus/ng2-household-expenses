@@ -1,6 +1,8 @@
 import { Action } from '@ngrx/store';
 
 import { Household } from './../models/household.model';
+import { CreateHousehold } from './../models/requests/createHousehold.model';
+import { ModifyHousehold } from './../models/requests/modifyHousehold.model';
 
 export enum HouseholdActionTypes {
     AddHousehold = '[Household] Add Household',
@@ -15,13 +17,13 @@ export enum HouseholdActionTypes {
     SelectHousehold = '[Household] Select Household',
     LoadHouseholds = '[Household] Load Households',
     LoadHouseholdsSuccess = '[Household] Load Households Success',
-    LoadHouseholdsFail = '[Household] Load Households Fail',
+    LoadHouseholdsFail = '[Household] Load Households Fail'
 }
 
 export class AddHousehold implements Action {
     readonly type = HouseholdActionTypes.AddHousehold;
 
-    constructor(public payload: Household) {
+    constructor(public payload: CreateHousehold) {
     }
 }
 
@@ -35,28 +37,28 @@ export class AddHouseholdSuccess implements Action {
 export class AddHouseholdFail implements Action {
     readonly type = HouseholdActionTypes.AddHouseholdFail;
 
-    constructor(public payload: Household) {
+    constructor(public payload: string) {
     }
 }
 
 export class UpdateHousehold implements Action {
     readonly type = HouseholdActionTypes.UpdateHousehold;
 
-    constructor(public payload: Household) {
+    constructor(public payload: ModifyHousehold) {
     }
 }
 
 export class UpdateHouseholdFail implements Action {
     readonly type = HouseholdActionTypes.UpdateHouseholdFail;
 
-    constructor(public payload: Household) {
+    constructor(public payload: string) {
     }
 }
 
 export class UpdateHouseholdSuccess implements Action {
     readonly type = HouseholdActionTypes.UpdateHouseholdSuccess;
 
-    constructor(public payload: Household) {
+    constructor(public payload: Partial<Household>) {
     }
 }
 
@@ -77,7 +79,7 @@ export class RemoveHouseholdSuccess implements Action {
 export class RemoveHouseholdFail implements Action {
     readonly type = HouseholdActionTypes.RemoveHouseholdFail;
 
-    constructor(public payload: Household) {
+    constructor(public payload: string) {
     }
 }
 
@@ -90,6 +92,9 @@ export class SelectHousehold implements Action {
 
 export class LoadHouseholds implements Action {
     readonly type = HouseholdActionTypes.LoadHouseholds;
+
+    constructor(public payload: number) {
+    }
 }
 
 export class LoadHouseholdsSuccess implements Action {
@@ -102,6 +107,21 @@ export class LoadHouseholdsSuccess implements Action {
 export class LoadHouseholdsFail implements Action {
     readonly type = HouseholdActionTypes.LoadHouseholdsFail;
 
-    constructor(public payload: any) {
+    constructor(public payload: string) {
     }
 }
+
+export type HouseholdActions =
+    AddHousehold
+    | AddHouseholdSuccess
+    | AddHouseholdFail
+    | UpdateHousehold
+    | UpdateHouseholdSuccess
+    | UpdateHouseholdFail
+    | RemoveHousehold
+    | RemoveHouseholdSuccess
+    | RemoveHouseholdFail
+    | SelectHousehold
+    | LoadHouseholds
+    | LoadHouseholdsSuccess
+    | LoadHouseholdsFail;

@@ -1,10 +1,10 @@
 export interface CreateHousehold {
-    UserId: number;
-    Name: string;
-    Symbol: string;
-    Description: string;
-    Street: string;
-    City: string;
-    Country: string;
-    ZipCode: string;
+    userId: number;
+    name: string;
+    symbol: string;
+    description: string;
+    street: string;
+    city: string;
+    country: string;
+    zipCode: string;
 }

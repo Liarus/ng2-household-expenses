@@ -25,6 +25,7 @@ export class FillMenuItems implements Action {
 
 export class ApplyMenuDefinition implements Action {
     readonly type = PagesActionTypes.ApplyMenuDefinition;
+
     constructor(public payload: any) {
     }
 }

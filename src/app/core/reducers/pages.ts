@@ -32,9 +32,6 @@ export function reducer(
                 menuItems: action.payload
             };
 
-        case PagesActionTypes.ApplyMenuDefinition:
-            return state;
-
         default:
             return state;
     }
