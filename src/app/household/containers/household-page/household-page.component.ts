@@ -9,7 +9,7 @@ import { Household } from '../../models/household.model';
 
 @Component({
   selector: 'app-household-page',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './household-page.component.html',
   styleUrls: ['./household-page.component.scss']
 })

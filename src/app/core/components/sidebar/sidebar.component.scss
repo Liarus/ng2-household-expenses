@@ -1,8 +1,8 @@
 :host /deep/ {
     
     #sidebar-wrapper {
-        margin-left: -150px;
-        width: 150px;
+        margin-left: -200px;
+        width: 200px;
         background: #222;
         position: fixed;
         height: 100%;
@@ -10,7 +10,7 @@
     }
 
     .sidebar-wrapper-expanded {
-      left: 150px;
+      left: 200px;
     }
 
     .sidebar-wrapper-colapsed {
@@ -20,7 +20,7 @@
     .sidebar-nav {
         display: block;
         float: left;
-        width: 150px;
+        width: 200px;
         list-style: none;
         margin: 0;
         padding: 0;
@@ -32,7 +32,7 @@
         display: block;
         float: right;
         text-decoration: none;
-        width: 150px;
+        width: 200px;
         background: #252525;
         border-top: 1px solid #373737;
         border-bottom: 1px solid #1A1A1A;

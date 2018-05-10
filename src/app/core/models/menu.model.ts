@@ -15,7 +15,7 @@ export const MENU = [
                 path: 'app-expenses',
                 data: {
                     title: 'Expenses',
-                    icon: 'fa-home',
+                    icon: 'fa-university',
                     permission: ['CanSeeExpenses'],
                     order: 100
                 }
@@ -24,7 +24,7 @@ export const MENU = [
                 path: 'app-savings',
                 data: {
                     title: 'Savings',
-                    icon: 'fa-balance-scale',
+                    icon: 'fa-money',
                     permission: ['CanSeeSavings'],
                     order: 200
                 }
@@ -42,7 +42,7 @@ export const MENU = [
                 path: 'app-users',
                 data: {
                     title: 'Users',
-                    icon: 'fa-users',
+                    icon: 'fa-user-circle-o',
                     permission: ['CanSeeUsers'],
                     order: 300
                 }
