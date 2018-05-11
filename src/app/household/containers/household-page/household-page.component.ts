@@ -10,15 +10,30 @@ import { Household } from '../../models/household.model';
 @Component({
   selector: 'app-household-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './household-page.component.html',
-  styleUrls: ['./household-page.component.scss']
+  styleUrls: ['./household-page.component.scss'],
+  template: `
+    <app-household-list [households]="households|async" [cols]="cols"
+    ></app-household-list>
+  `,
 })
 export class HouseholdPageComponent implements OnInit {
 
   households: Observable<Household[]>;
+  isLoading: Observable<boolean>;
+  cols: any[];
 
   constructor(private store: Store<fromHouseholds.State>) {
+    this.cols = [
+      { field: 'name', header: 'Name' },
+      { field: 'symbol', header: 'Symbol' },
+      { field: 'description', header: 'Description' },
+      { field: 'street', header: 'Street' },
+      { field: 'city', header: 'City' },
+      { field: 'country', header: 'Country' },
+      { field: 'zip', header: 'Zip' }
+    ];
     this.households = store.pipe(select(fromHouseholds.getAllHouseholds));
+    this.isLoading = store.pipe(select(fromHouseholds.getHouseholdsLoading));
   }
 
   ngOnInit() {

@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { routing } from './app.routing';
 import { AppComponent } from './core/containers';
@@ -15,6 +16,7 @@ import { reducers, metaReducers } from './reducers';
 import { PagesEffects } from './core/effects/pages';
 import { AppConfigDev } from './shared/configs/appConfig.dev';
 import { HttpService } from './shared/services/http.service';
+import { environment } from '../environments/environment';
 
 const APP_PROVIDERS = [
   HttpService
@@ -34,6 +36,10 @@ const APP_PROVIDERS = [
     routing,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([PagesEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
     APP_PROVIDERS,

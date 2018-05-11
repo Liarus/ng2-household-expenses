@@ -37,6 +37,12 @@
               },
               {
                 "input": "./node_modules/font-awesome/css/font-awesome.min.css" 
+              },
+              {
+                "input": "./node_modules/primeng/resources/themes/omega/theme.css" 
+              },
+              {
+                "input": "./node_modules/primeng/resources/primeng.min.css" 
               }
             ],
             "scripts": []
