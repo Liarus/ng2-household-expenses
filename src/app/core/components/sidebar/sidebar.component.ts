@@ -9,10 +9,10 @@ import { MenuItem } from '../../models/menuItem.model';
 })
 export class SidebarComponent implements OnInit {
   @Input() menuItems: MenuItem[] = [];
-  @Output() sidebarExpanded = new EventEmitter();
-  @Output() sidebarCollapsed = new EventEmitter();
+  @Input() isSidebarExpanded: boolean;
+  @Output() expandSidebar = new EventEmitter();
+  @Output() collapseSidebar = new EventEmitter();
 
-  private isSidebarExpanded = false;
 
   constructor() {
   }
@@ -21,11 +21,10 @@ export class SidebarComponent implements OnInit {
   }
 
   expandCollapse() {
-    this.isSidebarExpanded = !this.isSidebarExpanded;
     if (this.isSidebarExpanded) {
-      this.sidebarExpanded.emit();
+      this.collapseSidebar.emit();
     } else {
-      this.sidebarCollapsed.emit();
+      this.expandSidebar.emit();
     }
   }
 }
