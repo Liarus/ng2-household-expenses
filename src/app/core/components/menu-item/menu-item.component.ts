@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { MenuItem } from '../../../theme/models/menuItem.model';
+import { MenuItem } from '../../models/menuItem.model';
 
 @Component({
   selector: 'app-menu-item',

@@ -5,13 +5,15 @@
 >
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+      <th>Command</th>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field" [class]="col.className">
         {{col.header}}
         <p-sortIcon [field]="col.field"></p-sortIcon>
       </th>
     </tr>
     <tr>
-      <th *ngFor="let col of columns" >
+      <th></th>
+      <th *ngFor="let col of columns" [class]="col.className">
         <input pInputText type="text"
           style="width:100%"
           (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)"
@@ -21,10 +23,19 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
-      <td *ngFor="let col of columns">
+      <td>
+        <button type="button" pButton icon="fa-pencil" (click)="Edit()"></button>
+        <button type="button" pButton icon="fa-trash" (click)="Delete()"></button>
+      </td>
+      <td *ngFor="let col of columns" [class]="col.className">
         <span class="ui-column-title">{{col.header}}</span>
         {{rowData[col.field]}}
       </td>
     </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa-plus" (click)="Add()" label="Add"></button>
+    </div>
   </ng-template>
 </p-table>
