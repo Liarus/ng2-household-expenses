@@ -6,6 +6,8 @@ import { Store, select } from '@ngrx/store';
 import * as fromHouseholds from '../../reducers';
 import * as household from '../../actions/household';
 import { Household } from '../../models/household.model';
+import { CreateHousehold } from '../../models/requests/createHousehold.model';
+import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
 
 @Component({
   selector: 'app-household-page',
@@ -15,13 +17,20 @@ import { Household } from '../../models/household.model';
     <app-household-list [households]="households|async"
       [cols]="cols"
       [isLoading]="isLoading|async"
+      (add)=addHousehold($event)
     ></app-household-list>
+    <app-household-create-modal *ngIf="isAddDialogVisible|async"
+      [userId]="1"
+      (cancel)="hideAddDialog($event)"
+      (ok)="createHousehold($event)"
+    ></app-household-create-modal>
   `,
 })
 export class HouseholdPageComponent implements OnInit {
 
   households: Observable<Household[]>;
   isLoading: Observable<boolean>;
+  isAddDialogVisible: Observable<boolean>;
   cols: any[];
 
   constructor(private store: Store<fromHouseholds.State>) {
@@ -36,9 +45,32 @@ export class HouseholdPageComponent implements OnInit {
     ];
     this.households = store.pipe(select(fromHouseholds.getAllHouseholds));
     this.isLoading = store.pipe(select(fromHouseholds.getHouseholdsLoading));
+    this.isAddDialogVisible = store.pipe(select(fromHouseholds.getHouseholdsShowAddDialog));
   }
 
   ngOnInit() {
     this.store.dispatch(new household.LoadHouseholds(1));
+  }
+
+  createHousehold(command: CreateHousehold) {
+    this.showAddDialog(false);
+    this.store.dispatch(new household.AddHousehold(command));
+  }
+
+  updateHousehold(command: ModifyHousehold) {
+    this.showAddDialog(false);
+    this.store.dispatch(new household.UpdateHousehold(command));
+  }
+
+  addHousehold() {
+    this.showAddDialog(true);
+  }
+
+  hideAddDialog() {
+    this.showAddDialog(false);
+  }
+
+  private showAddDialog(show: boolean) {
+    this.store.dispatch(new household.ShowAddHouseholdDialog(show));
   }
 }

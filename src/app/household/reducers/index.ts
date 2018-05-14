@@ -34,6 +34,16 @@ export const getHouseholdsLoading = createSelector(
     fromHouseholds.getLoading
 );
 
+export const getHouseholdsShowAddDialog = createSelector(
+    getHouseholdEntitiesState,
+    fromHouseholds.getShowAddHouseholdDialog
+);
+
+export const getHouseholdsShowUpdateDialog = createSelector(
+    getHouseholdEntitiesState,
+    fromHouseholds.getShowUpdateHouseholdDialog
+);
+
 export const getHouseholdErrorMessage = createSelector(
     getHouseholdEntitiesState,
     fromHouseholds.getErrorMessage

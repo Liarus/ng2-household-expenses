@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
@@ -9,19 +11,18 @@ import { HouseholdService } from './services/household.service';
 import { routing } from './households.routing';
 import { PrimeNgModule } from '../primeNg/primeNg.module';
 
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
 import {
     HouseholdPageComponent
 } from './containers';
 import {
-    HouseholdListComponent
+    HouseholdListComponent,
+    HouseholdCreateModalComponent
 } from './components';
 
 const HOUSEHOLD_COMPONENTS = [
     HouseholdPageComponent,
-    HouseholdListComponent
+    HouseholdListComponent,
+    HouseholdCreateModalComponent
 ];
 
 const HOUSEHOLD_PROVIDERS = [
@@ -42,7 +43,7 @@ const HOUSEHOLD_PROVIDERS = [
         HOUSEHOLD_PROVIDERS
     ],
     declarations: [
-        HOUSEHOLD_COMPONENTS,
+        HOUSEHOLD_COMPONENTS
     ]
 })
 export class HouseholdModule {

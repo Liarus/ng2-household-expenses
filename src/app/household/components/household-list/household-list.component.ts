@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 
 import { Household } from '../../models/household.model';
 
@@ -13,6 +13,9 @@ export class HouseholdListComponent implements OnInit {
   @Input() households: Household[];
   @Input() isLoading: boolean;
   @Input() cols: any[];
+  @Output() add = new EventEmitter();
+  @Output() edit = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
 
   constructor() {
   }

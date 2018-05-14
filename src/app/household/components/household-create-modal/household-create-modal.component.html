@@ -1,0 +1,82 @@
+<p-dialog header="New Household" 
+    [responsive]="true" 
+    showEffect="fade" 
+    [modal]="true" 
+    [width]="400"
+    [visible]="true"
+>
+    <form [formGroup]="formGroup" (ngSubmit)="save()">
+        <p-tabView>
+            <p-tabPanel header="Details">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g ui-g-12 ui-g-nopad">
+                        <div class="ui-g-4 ui-label">
+                            <label for="name">*Name</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="name" [formControl]="formGroup.get('name')" />
+                        </div>
+                    </div>
+                    <div class="ui-g ui-g-12 ui-g-nopad">
+                        <div class="ui-g-4 ui-label">
+                            <label for="symbol">Symbol</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="symbol" [formControl]="formGroup.get('symbol')" />
+                        </div>
+                    </div>
+                    <div class="ui-g ui-g-12 ui-g-nopad">
+                        <div class="ui-g-4 ui-label">
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <textarea pInputTextarea id="description" [rows]="5" [cols]="30"  autoResize="autoResize" [formControl]="formGroup.get('description')"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Address">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g ui-g-12 ui-g-nopad">
+                        <div class="ui-g-4 ui-label">
+                            <label for="street">*Street</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="street" [formControl]="formGroup.get('street')" />
+                        </div>
+                    </div>
+                    <div class="ui-g ui-g-12 ui-g-nopad">
+                        <div class="ui-g-4 ui-label">
+                            <label for="city">*City</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="city" [formControl]="formGroup.get('city')" />
+                        </div>
+                    </div>
+                    <div class="ui-g ui-g-12 ui-g-nopad">
+                        <div class="ui-g-4 ui-label">
+                            <label for="country">*Country</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="country" [formControl]="formGroup.get('country')" />
+                        </div>
+                    </div>
+                    <div class="ui-g ui-g-12 ui-g-nopad">
+                        <div class="ui-g-4 ui-label">
+                            <label for="zip">*Zip Code</label>
+                        </div>
+                        <div class="ui-g-8">
+                            <input pInputText id="zip" [formControl]="formGroup.get('zipCode')" />
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <button type="button" pButton icon="fa-close" (click)="cancel.emit()" label="Cancel"></button>
+                <button type="submit" pButton icon="fa-check" label="Save"></button>
+            </div>
+        </p-footer>
+    </form>
+</p-dialog>

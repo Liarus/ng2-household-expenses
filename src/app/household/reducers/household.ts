@@ -1,10 +1,12 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { Household } from '../models/household.model';
-import { HouseholdActions, HouseholdActionTypes } from './../actions/household';
+import { HouseholdActions, HouseholdActionTypes, ShowUpdateHouseholdDialog } from './../actions/household';
 
 export interface State extends EntityState<Household> {
     selectedHouseholdId: number;
+    showAddHouseholdDialog: boolean;
+    showUpdateHouseholdDialog: boolean;
     loading: boolean;
     errorMessage: string;
 }
@@ -16,6 +18,8 @@ export const adapter: EntityAdapter<Household> = createEntityAdapter<Household>(
 
 export const initialState: State = adapter.getInitialState({
     selectedHouseholdId: null,
+    showAddHouseholdDialog: false,
+    showUpdateHouseholdDialog: false,
     loading: false,
     errorMessage: ''
 });
@@ -82,6 +86,18 @@ export function reducer(
                 selectedHouseholdId: action.payload
             };
 
+        case HouseholdActionTypes.ShowAddHouseholdDialog:
+            return {
+                ...state,
+                showAddHouseholdDialog: action.payload
+            };
+
+        case HouseholdActionTypes.ShowUpdateHouseholdDialog:
+            return {
+                ...state,
+                showUpdateHouseholdDialog: action.payload
+            };
+
         default: {
             return state;
         }
@@ -94,3 +110,7 @@ export const getLoading = (state: State) => state.loading;
 export const getErrorMessage = (state: State) => state.errorMessage;
 
 export const getSelectedId = (state: State) => state.selectedHouseholdId;
+
+export const getShowAddHouseholdDialog = (state: State) => state.showAddHouseholdDialog;
+
+export const getShowUpdateHouseholdDialog = (state: State) => state.showUpdateHouseholdDialog;

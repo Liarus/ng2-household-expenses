@@ -1,7 +1,8 @@
 <p-table #dt [columns]="cols"
   [value]="households"
   [paginator]="true"
-  [rows]="20" [responsive]="true"
+  [rows]="20" 
+  [responsive]="true"
 >
   <ng-template pTemplate="header" let-columns>
     <tr>
@@ -24,8 +25,8 @@
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
       <td>
-        <button type="button" pButton icon="fa-pencil" (click)="Edit()"></button>
-        <button type="button" pButton icon="fa-trash" (click)="Delete()"></button>
+        <button type="button" pButton icon="fa-pencil" (click)="edit()"></button>
+        <button type="button" pButton icon="fa-trash" (click)="delete()"></button>
       </td>
       <td *ngFor="let col of columns" [class]="col.className">
         <span class="ui-column-title">{{col.header}}</span>
@@ -35,7 +36,7 @@
   </ng-template>
   <ng-template pTemplate="summary" let-rowData>
     <div style="text-align:left">
-      <button type="button" pButton icon="fa-plus" (click)="Add()" label="Add"></button>
+      <button type="button" pButton icon="fa-plus" (click)="add.emit()" label="Add"></button>
     </div>
   </ng-template>
 </p-table>
