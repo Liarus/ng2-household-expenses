@@ -8,11 +8,9 @@ export enum HouseholdActionTypes {
     AddHousehold = '[Household] Add Household',
     AddHouseholdSuccess = '[Household] Add Household Success',
     AddHouseholdFail = '[Household] Add Household Fail',
-    ShowAddHouseholdDialog = '[Household] Show Add Household Dialog',
     UpdateHousehold = '[Household] Update Household',
     UpdateHouseholdSuccess = '[Household] Update Household Success',
     UpdateHouseholdFail = '[Household] Update Household Fail',
-    ShowUpdateHouseholdDialog = '[Household] Show Update Household Dialog',
     RemoveHousehold = '[Household] Remove Household',
     RemoveHouseholdSuccess = '[Household] Remove Household Success',
     RemoveHouseholdFail = '[Household] Remove Household Fail',
@@ -113,20 +111,6 @@ export class LoadHouseholdsFail implements Action {
     }
 }
 
-export class ShowAddHouseholdDialog implements Action {
-    readonly type = HouseholdActionTypes.ShowAddHouseholdDialog;
-
-    constructor(public payload: boolean) {
-    }
-}
-
-export class ShowUpdateHouseholdDialog implements Action {
-    readonly type = HouseholdActionTypes.ShowUpdateHouseholdDialog;
-
-    constructor(public payload: boolean) {
-    }
-}
-
 export type HouseholdActions =
     AddHousehold
     | AddHouseholdSuccess
@@ -140,6 +124,4 @@ export type HouseholdActions =
     | SelectHousehold
     | LoadHouseholds
     | LoadHouseholdsSuccess
-    | LoadHouseholdsFail
-    | ShowAddHouseholdDialog
-    | ShowUpdateHouseholdDialog;
+    | LoadHouseholdsFail;

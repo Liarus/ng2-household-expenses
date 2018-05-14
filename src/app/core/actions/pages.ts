@@ -5,7 +5,9 @@ export enum PagesActionTypes {
     ExpandSidebar = '[Pages] Expand Sidebar',
     CollapseSidebar = '[Pages] Collapse Sidebar',
     FillMenuItems = '[Pages] Fill Menu Items',
-    ApplyMenuDefinition = '[Pages] Apply Menu Definition'
+    ApplyMenuDefinition = '[Pages] Apply Menu Definition',
+    OpenModal = '[Pages] Open Modal',
+    CloseModal = '[Pages] Close Modal'
 }
 
 export class ExpandSidebar implements Action {
@@ -30,8 +32,24 @@ export class ApplyMenuDefinition implements Action {
     }
 }
 
+export class OpenModal implements Action {
+    readonly type = PagesActionTypes.OpenModal;
+
+    constructor(public payload: string) {
+    }
+}
+
+export class CloseModal implements Action {
+    readonly type = PagesActionTypes.CloseModal;
+
+    constructor(public payload: string) {
+    }
+}
+
 export type PagesActions =
     ExpandSidebar
     | CollapseSidebar
     | FillMenuItems
-    | ApplyMenuDefinition;
+    | ApplyMenuDefinition
+    | OpenModal
+    | CloseModal;

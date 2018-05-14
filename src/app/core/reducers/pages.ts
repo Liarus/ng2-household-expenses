@@ -4,12 +4,14 @@ import { MenuItem } from '../models/menuItem.model';
 export interface State {
     isSidebarExpanded: boolean;
     menuItems: MenuItem[];
+    openedModalName: string;
 }
 
 export function reducer(
     state: State = {
         isSidebarExpanded: false,
-        menuItems: []
+        menuItems: [],
+        openedModalName: null
     },
     action: PagesActions
 ): State {
@@ -31,6 +33,16 @@ export function reducer(
                 ...state,
                 menuItems: action.payload
             };
+        case PagesActionTypes.OpenModal:
+            return {
+                ...state,
+                openedModalName: action.payload
+            };
+        case PagesActionTypes.CloseModal:
+            return {
+                ...state,
+                openedModalName: null
+            };
 
         default:
             return state;
@@ -39,3 +51,4 @@ export function reducer(
 
 export const getIsSidebarExpanded = (state: State) => state.isSidebarExpanded;
 export const getMenuItems = (state: State) => state.menuItems;
+export const getOpenedModalName = (state: State) => state.openedModalName;

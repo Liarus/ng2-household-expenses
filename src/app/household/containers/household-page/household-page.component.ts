@@ -5,9 +5,13 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromHouseholds from '../../reducers';
 import * as household from '../../actions/household';
+import * as fromPages from '../../../reducers';
+import * as pages from '../../../core/actions/pages';
 import { Household } from '../../models/household.model';
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
+import { State } from '../../../reducers';
+import { HouseholdModalNames } from '../../definitions/householdModalNames.const';
 
 @Component({
   selector: 'app-household-page',
@@ -19,9 +23,9 @@ import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
       [isLoading]="isLoading|async"
       (add)=addHousehold($event)
     ></app-household-list>
-    <app-household-create-modal *ngIf="isAddDialogVisible|async"
+    <app-household-create-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_ADD_DIALOG'"
       [userId]="1"
-      (cancel)="hideAddDialog($event)"
+      (cancel)="hideAddModal($event)"
       (ok)="createHousehold($event)"
     ></app-household-create-modal>
   `,
@@ -30,10 +34,10 @@ export class HouseholdPageComponent implements OnInit {
 
   households: Observable<Household[]>;
   isLoading: Observable<boolean>;
-  isAddDialogVisible: Observable<boolean>;
+  openedModalName: Observable<string>;
   cols: any[];
 
-  constructor(private store: Store<fromHouseholds.State>) {
+  constructor(private store: Store<State>) {
     this.cols = [
       { field: 'name', header: 'Name', className: '' },
       { field: 'symbol', header: 'Symbol', className: '' },
@@ -45,7 +49,7 @@ export class HouseholdPageComponent implements OnInit {
     ];
     this.households = store.pipe(select(fromHouseholds.getAllHouseholds));
     this.isLoading = store.pipe(select(fromHouseholds.getHouseholdsLoading));
-    this.isAddDialogVisible = store.pipe(select(fromHouseholds.getHouseholdsShowAddDialog));
+    this.openedModalName = store.pipe(select(fromPages.getOpenedModalName));
   }
 
   ngOnInit() {
@@ -53,24 +57,27 @@ export class HouseholdPageComponent implements OnInit {
   }
 
   createHousehold(command: CreateHousehold) {
-    this.showAddDialog(false);
+    this.hideAddModal();
     this.store.dispatch(new household.AddHousehold(command));
   }
 
   updateHousehold(command: ModifyHousehold) {
-    this.showAddDialog(false);
     this.store.dispatch(new household.UpdateHousehold(command));
   }
 
   addHousehold() {
-    this.showAddDialog(true);
+    this.openModal(HouseholdModalNames.ADD_HOUSEHOLD_DIALOG);
   }
 
-  hideAddDialog() {
-    this.showAddDialog(false);
+  hideAddModal() {
+    this.closeModal(HouseholdModalNames.ADD_HOUSEHOLD_DIALOG);
   }
 
-  private showAddDialog(show: boolean) {
-    this.store.dispatch(new household.ShowAddHouseholdDialog(show));
+  private openModal(name: string) {
+    this.store.dispatch(new pages.OpenModal(name));
+  }
+
+  private closeModal(name: string) {
+    this.store.dispatch(new pages.CloseModal(name));
   }
 }

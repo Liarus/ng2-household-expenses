@@ -4,6 +4,8 @@
     [modal]="true" 
     [width]="400"
     [visible]="true"
+    [closeOnEscape]="false"
+    [closable]="false"
 >
     <form [formGroup]="formGroup" (ngSubmit)="save()">
         <p-tabView>

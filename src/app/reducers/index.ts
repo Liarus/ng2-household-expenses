@@ -38,7 +38,13 @@ export const getIsSidebarExpanded = createSelector(
     getPagesState,
     fromPages.getIsSidebarExpanded
 );
+
 export const getMenuItems = createSelector(
     getPagesState,
     fromPages.getMenuItems
+);
+
+export const getOpenedModalName = createSelector(
+    getPagesState,
+    fromPages.getOpenedModalName
 );
