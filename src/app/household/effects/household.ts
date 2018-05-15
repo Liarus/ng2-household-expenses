@@ -36,7 +36,7 @@ export class HouseholdEffects {
             .pipe(
                 map(response => new AddHouseholdSuccess(
                     {
-                        id: response.Id,
+                        id: response,
                         name: request.name,
                         symbol: request.symbol,
                         description: request.description,
