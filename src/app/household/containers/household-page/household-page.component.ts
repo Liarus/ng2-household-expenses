@@ -12,10 +12,11 @@ import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
 import { State } from '../../../reducers';
 import { HouseholdModalNames } from '../../definitions/householdModalNames.const';
+import { DeleteHousehold } from '../../models/requests/deleteHousehold.model';
 
 @Component({
   selector: 'app-household-page',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./household-page.component.scss'],
   template: `
     <app-household-list [households]="households|async"
@@ -23,6 +24,7 @@ import { HouseholdModalNames } from '../../definitions/householdModalNames.const
       [isLoading]="isLoading|async"
       (add)=addHousehold($event)
       (edit)=updateHousehold($event)
+      (delete)=deleteHousehold($event)
     ></app-household-list>
     <app-household-create-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_ADD_DIALOG'"
       [userId]="1"
@@ -73,6 +75,10 @@ export class HouseholdPageComponent implements OnInit {
   modifyHousehold(command: ModifyHousehold) {
     this.hideUpdateModal();
     this.store.dispatch(new household.UpdateHousehold(command));
+  }
+
+  deleteHousehold(command: DeleteHousehold) {
+    this.store.dispatch(new household.RemoveHousehold(command));
   }
 
   addHousehold() {

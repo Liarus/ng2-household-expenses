@@ -64,7 +64,7 @@ export function reducer(
             );
 
         case HouseholdActionTypes.RemoveHouseholdSuccess:
-            return adapter.removeOne(action.payload.id, {
+            return adapter.removeOne(action.payload, {
                 ...state,
                 loading: false
             });

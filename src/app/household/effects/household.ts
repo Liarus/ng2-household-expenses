@@ -10,12 +10,18 @@ import {
     AddHouseholdFail,
     AddHouseholdSuccess,
     UpdateHousehold,
+    UpdateHouseholdFail,
     UpdateHouseholdSuccess,
-    LoadHouseholdsFail
+    LoadHouseholds,
+    LoadHouseholdsSuccess,
+    LoadHouseholdsFail,
+    RemoveHousehold,
+    RemoveHouseholdSuccess,
+    RemoveHouseholdFail
 } from '../actions/household';
 import { CreateHousehold } from '../models/requests/createHousehold.model';
-import { UpdateHouseholdFail, LoadHouseholds, LoadHouseholdsSuccess } from './../actions/household';
 import { ModifyHousehold } from './../models/requests/modifyHousehold.model';
+import { DeleteHousehold } from './../models/requests/deleteHousehold.model';
 import { Household } from './../models/household.model';
 
 @Injectable()
@@ -67,6 +73,19 @@ export class HouseholdEffects {
                     })
                 ),
                 catchError(error => of(new UpdateHouseholdFail(error)))
+            )
+        )
+    );
+
+    @Effect()
+    deleteHousehold = this.actions.pipe(
+        ofType(HouseholdActionTypes.RemoveHousehold),
+        map((action: RemoveHousehold) => action.payload),
+        switchMap((request: DeleteHousehold) =>
+            this.householdService.delete(request)
+            .pipe(
+                map(response => new RemoveHouseholdSuccess(request.id)),
+                catchError(error => of(new RemoveHouseholdFail(error)))
             )
         )
     );

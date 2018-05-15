@@ -41,12 +41,11 @@ export class HttpService {
         return this.httpClient.put<T>(url, model, httpOptions);
     }
 
-    delete(url: string, model: any): Observable<any> {
+    delete(url: string): Observable<any> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-type': 'application/json'
             }),
-            body: model
         };
 
         return this.httpClient.delete(url, httpOptions);
