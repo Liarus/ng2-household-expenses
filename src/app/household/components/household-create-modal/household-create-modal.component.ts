@@ -27,7 +27,6 @@ export class HouseholdCreateModalComponent implements OnInit {
   @Output() ok = new EventEmitter<CreateHousehold>();
 
   formGroup: FormGroup;
-  household: CreateHousehold;
 
   constructor() {
   }

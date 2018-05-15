@@ -45,7 +45,7 @@ export const getSelectedHouseholdId = createSelector(
 );
 
 export const getSelectedHousehold = createSelector(
-    getHouseholdEntitiesState,
+    getHouseholdEntities,
     getSelectedHouseholdId,
     (entities, selectedId) => {
         return selectedId && entities[selectedId];

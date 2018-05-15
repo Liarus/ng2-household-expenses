@@ -16,7 +16,8 @@ import {
 } from './containers';
 import {
     HouseholdListComponent,
-    HouseholdCreateModalComponent
+    HouseholdCreateModalComponent,
+    HouseholdUpdateModalComponent
 } from './components';
 
 const HOUSEHOLD_COMPONENTS = [
@@ -43,7 +44,8 @@ const HOUSEHOLD_PROVIDERS = [
         HOUSEHOLD_PROVIDERS
     ],
     declarations: [
-        HOUSEHOLD_COMPONENTS
+        HOUSEHOLD_COMPONENTS,
+        HouseholdUpdateModalComponent
     ]
 })
 export class HouseholdModule {

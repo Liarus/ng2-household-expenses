@@ -15,24 +15,32 @@ import { HouseholdModalNames } from '../../definitions/householdModalNames.const
 
 @Component({
   selector: 'app-household-page',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./household-page.component.scss'],
   template: `
     <app-household-list [households]="households|async"
       [cols]="cols"
       [isLoading]="isLoading|async"
       (add)=addHousehold($event)
+      (edit)=updateHousehold($event)
     ></app-household-list>
     <app-household-create-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_ADD_DIALOG'"
       [userId]="1"
       (cancel)="hideAddModal($event)"
       (ok)="createHousehold($event)"
     ></app-household-create-modal>
+    <app-household-update-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_UPDATE_DIALOG'"
+      [household]="selectedHousehold|async"
+      (cancel)="hideUpdateModal($event)"
+      (ok)="modifyHousehold($event)"
+    ></app-household-update-modal>
   `,
 })
 export class HouseholdPageComponent implements OnInit {
 
   households: Observable<Household[]>;
+  selectedHousehold: Observable<Household>;
+  household: Household;
   isLoading: Observable<boolean>;
   openedModalName: Observable<string>;
   cols: any[];
@@ -50,6 +58,7 @@ export class HouseholdPageComponent implements OnInit {
     this.households = store.pipe(select(fromHouseholds.getAllHouseholds));
     this.isLoading = store.pipe(select(fromHouseholds.getHouseholdsLoading));
     this.openedModalName = store.pipe(select(fromPages.getOpenedModalName));
+    this.selectedHousehold = store.pipe(select(fromHouseholds.getSelectedHousehold));
   }
 
   ngOnInit() {
@@ -61,7 +70,8 @@ export class HouseholdPageComponent implements OnInit {
     this.store.dispatch(new household.AddHousehold(command));
   }
 
-  updateHousehold(command: ModifyHousehold) {
+  modifyHousehold(command: ModifyHousehold) {
+    this.hideUpdateModal();
     this.store.dispatch(new household.UpdateHousehold(command));
   }
 
@@ -69,8 +79,17 @@ export class HouseholdPageComponent implements OnInit {
     this.openModal(HouseholdModalNames.ADD_HOUSEHOLD_DIALOG);
   }
 
+  updateHousehold(id: number) {
+    this.store.dispatch(new household.SelectHousehold(id));
+    this.openModal(HouseholdModalNames.UPDATE_HOUSEHOLD_DIALOG);
+  }
+
   hideAddModal() {
     this.closeModal(HouseholdModalNames.ADD_HOUSEHOLD_DIALOG);
+  }
+
+  hideUpdateModal() {
+    this.closeModal(HouseholdModalNames.UPDATE_HOUSEHOLD_DIALOG);
   }
 
   private openModal(name: string) {
