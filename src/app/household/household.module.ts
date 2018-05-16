@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 import { HouseholdEffects } from './effects/household';
 import { HouseholdService } from './services/household.service';
-import { routing } from './households.routing';
+import { routing } from './household.routing';
 import { PrimeNgModule } from '../primeNg/primeNg.module';
 
 import {
