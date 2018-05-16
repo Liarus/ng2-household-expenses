@@ -9,7 +9,8 @@ export const routes: Routes = [
         path: 'pages',
         component: PagesComponent,
         children: [
-            { path: 'app-households', loadChildren: '../household/household.module#HouseholdModule' }
+            { path: 'app-households', loadChildren: '../household/household.module#HouseholdModule' },
+            { path: 'app-settings', loadChildren: '../settings/settings.module#SettingsModule' },
         ]
     }
 ];
