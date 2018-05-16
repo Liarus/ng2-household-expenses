@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { CreateHousehold } from './../../models/requests/createHousehold.model';
@@ -17,6 +17,7 @@ const fg = dataItem => new FormGroup({
 
 @Component({
   selector: 'app-household-create-modal',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './household-create-modal.component.html',
   styleUrls: ['./household-create-modal.component.scss']
 })
