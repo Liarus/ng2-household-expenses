@@ -23,7 +23,8 @@ import {
 const HOUSEHOLD_COMPONENTS = [
     HouseholdPageComponent,
     HouseholdListComponent,
-    HouseholdCreateModalComponent
+    HouseholdCreateModalComponent,
+    HouseholdUpdateModalComponent
 ];
 
 const HOUSEHOLD_PROVIDERS = [
@@ -44,8 +45,7 @@ const HOUSEHOLD_PROVIDERS = [
         HOUSEHOLD_PROVIDERS
     ],
     declarations: [
-        HOUSEHOLD_COMPONENTS,
-        HouseholdUpdateModalComponent
+        HOUSEHOLD_COMPONENTS
     ]
 })
 export class HouseholdModule {
