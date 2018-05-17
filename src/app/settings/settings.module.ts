@@ -7,6 +7,11 @@ import { StoreModule } from '@ngrx/store';
 
 import { PrimeNgModule } from '../primeNg/primeNg.module';
 import { routing } from './settings.routing';
+import { ExpenseTypeEffects } from './effects/expenseType';
+import { SavingTypeEffects } from './effects/savingType';
+import { ExpenseTypeService } from './services/expenseType.service';
+import { SavingTypeService } from './services/savingType.service';
+import { reducers } from './reducers';
 
 import {
     SettingsPageComponent,
@@ -14,15 +19,21 @@ import {
     SavingTypePageComponent
 } from './containers';
 import {
+    SavingTypeListComponent,
+    ExpenseTypeListComponent
 } from './components';
 
 const SETTINGS_COMPONENTS = [
     SettingsPageComponent,
     ExpenseTypePageComponent,
-    SavingTypePageComponent
+    SavingTypePageComponent,
+    SavingTypeListComponent,
+    ExpenseTypeListComponent
 ];
 
 const SETTINGS_PROVIDERS = [
+    SavingTypeService,
+    ExpenseTypeService
 ];
 
 @NgModule({
@@ -32,12 +43,15 @@ const SETTINGS_PROVIDERS = [
         FormsModule,
         routing,
         PrimeNgModule,
+        StoreModule.forFeature('settings', reducers),
+        EffectsModule.forFeature([ExpenseTypeEffects, SavingTypeEffects])
     ],
     providers: [
         SETTINGS_PROVIDERS
     ],
     declarations: [
         SETTINGS_COMPONENTS,
+        ExpenseTypeListComponent
     ]
 })
 export class SettingsModule {
