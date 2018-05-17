@@ -13,10 +13,13 @@
                 <div class="ui-g ui-fluid">
                     <div class="ui-g ui-g-12 ui-g-nopad">
                         <div class="ui-g-4 ui-label">
-                            <label for="name">*Name</label>
+                            <label for="name">Name</label>
                         </div>
                         <div class="ui-g-8">
-                            <input pInputText id="name" [formControl]="formGroup.get('name')" />
+                            <input pInputText id="name"
+                                placeholder="Required"
+                                [formControl]="formGroup.get('name')"
+                            />
                         </div>
                     </div>
                     <div class="ui-g ui-g-12 ui-g-nopad">
@@ -32,7 +35,12 @@
                             <label for="description">Description</label>
                         </div>
                         <div class="ui-g-8">
-                            <textarea pInputTextarea id="description" [rows]="5" [cols]="30"  autoResize="autoResize" [formControl]="formGroup.get('description')"></textarea>
+                            <textarea pInputTextarea id="description"
+                                [rows]="5"
+                                [cols]="30"
+                                autoResize="autoResize"
+                                [formControl]="formGroup.get('description')"
+                            ></textarea>
                         </div>
                     </div>
                 </div>
@@ -41,34 +49,46 @@
                 <div class="ui-g ui-fluid">
                     <div class="ui-g ui-g-12 ui-g-nopad">
                         <div class="ui-g-4 ui-label">
-                            <label for="street">*Street</label>
+                            <label for="street">Street</label>
                         </div>
                         <div class="ui-g-8">
-                            <input pInputText id="street" [formControl]="formGroup.get('street')" />
+                            <input pInputText id="street"
+                                placeholder="Required"
+                                [formControl]="formGroup.get('street')"
+                            />
                         </div>
                     </div>
                     <div class="ui-g ui-g-12 ui-g-nopad">
                         <div class="ui-g-4 ui-label">
-                            <label for="city">*City</label>
+                            <label for="city">City</label>
                         </div>
                         <div class="ui-g-8">
-                            <input pInputText id="city" [formControl]="formGroup.get('city')" />
+                            <input pInputText id="city"
+                                placeholder="Required"
+                                [formControl]="formGroup.get('city')"
+                            />
                         </div>
                     </div>
                     <div class="ui-g ui-g-12 ui-g-nopad">
                         <div class="ui-g-4 ui-label">
-                            <label for="country">*Country</label>
+                            <label for="country">Country</label>
                         </div>
                         <div class="ui-g-8">
-                            <input pInputText id="country" [formControl]="formGroup.get('country')" />
+                            <input pInputText id="country"
+                                placeholder="Required"
+                                [formControl]="formGroup.get('country')"
+                            />
                         </div>
                     </div>
                     <div class="ui-g ui-g-12 ui-g-nopad">
                         <div class="ui-g-4 ui-label">
-                            <label for="zip">*Zip Code</label>
+                            <label for="zip">Zip Code</label>
                         </div>
                         <div class="ui-g-8">
-                            <input pInputText id="zip" [formControl]="formGroup.get('zipCode')" />
+                            <input pInputText id="zip"
+                                placeholder="Required"
+                                [formControl]="formGroup.get('zipCode')" 
+                            />
                         </div>
                     </div>
                 </div>
