@@ -19,23 +19,27 @@ import { DeleteHousehold } from '../../models/requests/deleteHousehold.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./household-page.component.scss'],
   template: `
-    <app-household-list [households]="households|async"
-      [cols]="cols"
-      [isLoading]="isLoading|async"
-      (add)=addHousehold($event)
-      (edit)=updateHousehold($event)
-      (delete)=deleteHousehold($event)
-    ></app-household-list>
-    <app-household-create-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_ADD_DIALOG'"
-      [userId]="1"
-      (cancel)="hideAddModal($event)"
-      (ok)="createHousehold($event)"
-    ></app-household-create-modal>
-    <app-household-update-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_UPDATE_DIALOG'"
-      [household]="selectedHousehold|async"
-      (cancel)="hideUpdateModal($event)"
-      (ok)="modifyHousehold($event)"
-    ></app-household-update-modal>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <app-household-list [households]="households|async"
+          [cols]="cols"
+          [isLoading]="isLoading|async"
+          (add)=addHousehold($event)
+          (edit)=updateHousehold($event)
+          (delete)=deleteHousehold($event)
+        ></app-household-list>
+        <app-household-create-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_ADD_DIALOG'"
+          [userId]="1"
+          (cancel)="hideAddModal($event)"
+          (ok)="createHousehold($event)"
+        ></app-household-create-modal>
+        <app-household-update-modal *ngIf="(openedModalName|async)==='HOUSEHOLD_UPDATE_DIALOG'"
+          [household]="selectedHousehold|async"
+          (cancel)="hideUpdateModal($event)"
+          (ok)="modifyHousehold($event)"
+        ></app-household-update-modal>
+      </div>
+    </div>
   `,
 })
 export class HouseholdPageComponent implements OnInit {
