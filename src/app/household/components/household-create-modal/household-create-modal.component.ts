@@ -12,7 +12,7 @@ const fg = dataItem => new FormGroup({
     'street': new FormControl(dataItem.street, [Validators.required, Validators.maxLength(255)]),
     'city': new FormControl(dataItem.city, [Validators.required, Validators.maxLength(255)]),
     'country': new FormControl(dataItem.country, [Validators.required, Validators.maxLength(255)]),
-    'zipCode': new FormControl(dataItem.zipCode, [Validators.required, Validators.maxLength(255)]),
+    'zipCode': new FormControl(dataItem.zipCode, [Validators.required, Validators.maxLength(10)]),
 });
 
 @Component({

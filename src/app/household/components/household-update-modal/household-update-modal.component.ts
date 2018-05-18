@@ -7,13 +7,13 @@ import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
 const fg = dataItem => new FormGroup({
   'id': new FormControl(dataItem.id),
   'name': new FormControl(dataItem.name, [Validators.required, Validators.maxLength(255)]),
-  'symbol': new FormControl(dataItem.symbol, [Validators.maxLength(255)]),
+  'symbol': new FormControl(dataItem.symbol, [Validators.maxLength(20)]),
   'description': new FormControl(dataItem.description, [Validators.maxLength(255)]),
   'street': new FormControl(dataItem.street, [Validators.required, Validators.maxLength(255)]),
   'city': new FormControl(dataItem.city, [Validators.required, Validators.maxLength(255)]),
   'country': new FormControl(dataItem.country, [Validators.required, Validators.maxLength(255)]),
-  'zipCode': new FormControl(dataItem.zipCode, [Validators.required, Validators.maxLength(255)]),
-  'version': new FormControl(dataItem.version, [Validators.required, Validators.maxLength(255)])
+  'zipCode': new FormControl(dataItem.zipCode, [Validators.required, Validators.maxLength(10)]),
+  'version': new FormControl(dataItem.version)
 });
 
 @Component({
