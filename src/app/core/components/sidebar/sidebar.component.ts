@@ -1,10 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { MenuItem } from '../../models/menuItem.model';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
