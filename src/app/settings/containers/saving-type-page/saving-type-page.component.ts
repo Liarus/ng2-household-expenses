@@ -18,27 +18,23 @@ import { ModifySavingType } from './../../models/requests/modifySavingType.model
   selector: 'app-saving-type-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <app-saving-type-list [types]="types|async"
-          [cols]="cols"
-          [isLoading]="isLoading|async"
-          (add)=addType($event)
-          (edit)=updateType($event)
-          (delete)=deleteType($event)
-        ></app-saving-type-list>
-        <app-saving-type-create-modal *ngIf="(openedModalName|async)==='SAVINGTYPE_ADD_DIALOG'"
-          [userId]="1"
-          (cancel)="hideAddModal($event)"
-          (ok)="createType($event)"
-        ></app-saving-type-create-modal>
-        <app-saving-type-update-modal *ngIf="(openedModalName|async)==='SAVINGTYPE_UPDATE_DIALOG'"
-          [type]="selectedType|async"
-          (cancel)="hideUpdateModal($event)"
-          (ok)="modifyType($event)"
-        ></app-saving-type-update-modal>
-      </div>
-    </div>
+    <app-saving-type-list [types]="types|async"
+      [cols]="cols"
+      [isLoading]="isLoading|async"
+      (add)=addType($event)
+      (edit)=updateType($event)
+      (delete)=deleteType($event)
+    ></app-saving-type-list>
+    <app-saving-type-create-modal *ngIf="(openedModalName|async)==='SAVINGTYPE_ADD_DIALOG'"
+      [userId]="1"
+      (cancel)="hideAddModal($event)"
+      (ok)="createType($event)"
+    ></app-saving-type-create-modal>
+    <app-saving-type-update-modal *ngIf="(openedModalName|async)==='SAVINGTYPE_UPDATE_DIALOG'"
+      [type]="selectedType|async"
+      (cancel)="hideUpdateModal($event)"
+      (ok)="modifyType($event)"
+    ></app-saving-type-update-modal>
   `
 })
 export class SavingTypePageComponent implements OnInit {

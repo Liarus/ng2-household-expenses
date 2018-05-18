@@ -18,27 +18,23 @@ import { CreateExpenseType } from './../../models/requests/createExpenseType.mod
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./expense-type-page.component.scss'],
   template: `
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <app-expense-type-list [types]="types|async"
-          [cols]="cols"
-          [isLoading]="isLoading|async"
-          (add)=addType($event)
-          (edit)=updateType($event)
-          (delete)=deleteType($event)
-        ></app-expense-type-list>
-        <app-expense-type-create-modal *ngIf="(openedModalName|async)==='EXPENSETYPE_ADD_DIALOG'"
-          [userId]="1"
-          (cancel)="hideAddModal($event)"
-          (ok)="createType($event)"
-        ></app-expense-type-create-modal>
-        <app-expense-type-update-modal *ngIf="(openedModalName|async)==='EXPENSETYPE_UPDATE_DIALOG'"
-          [type]="selectedType|async"
-          (cancel)="hideUpdateModal($event)"
-          (ok)="modifyType($event)"
-        ></app-expense-type-update-modal>
-      </div>
-    </div>
+    <app-expense-type-list [types]="types|async"
+      [cols]="cols"
+      [isLoading]="isLoading|async"
+      (add)=addType($event)
+      (edit)=updateType($event)
+      (delete)=deleteType($event)
+    ></app-expense-type-list>
+    <app-expense-type-create-modal *ngIf="(openedModalName|async)==='EXPENSETYPE_ADD_DIALOG'"
+      [userId]="1"
+      (cancel)="hideAddModal($event)"
+      (ok)="createType($event)"
+    ></app-expense-type-create-modal>
+    <app-expense-type-update-modal *ngIf="(openedModalName|async)==='EXPENSETYPE_UPDATE_DIALOG'"
+      [type]="selectedType|async"
+      (cancel)="hideUpdateModal($event)"
+      (ok)="modifyType($event)"
+    ></app-expense-type-update-modal>
   `
 })
 export class ExpenseTypePageComponent implements OnInit {
