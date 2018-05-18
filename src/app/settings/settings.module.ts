@@ -20,7 +20,11 @@ import {
 } from './containers';
 import {
     SavingTypeListComponent,
-    ExpenseTypeListComponent
+    ExpenseTypeListComponent,
+    SavingTypeCreateModalComponent,
+    SavingTypeUpdateModalComponent,
+    ExpenseTypeUpdateModalComponent,
+    ExpenseTypeCreateModalComponent
 } from './components';
 
 const SETTINGS_COMPONENTS = [
@@ -28,7 +32,11 @@ const SETTINGS_COMPONENTS = [
     ExpenseTypePageComponent,
     SavingTypePageComponent,
     SavingTypeListComponent,
-    ExpenseTypeListComponent
+    ExpenseTypeListComponent,
+    SavingTypeCreateModalComponent,
+    SavingTypeUpdateModalComponent,
+    ExpenseTypeUpdateModalComponent,
+    ExpenseTypeCreateModalComponent
 ];
 
 const SETTINGS_PROVIDERS = [
@@ -50,8 +58,7 @@ const SETTINGS_PROVIDERS = [
         SETTINGS_PROVIDERS
     ],
     declarations: [
-        SETTINGS_COMPONENTS,
-        ExpenseTypeListComponent
+        SETTINGS_COMPONENTS
     ]
 })
 export class SettingsModule {

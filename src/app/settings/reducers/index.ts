@@ -47,7 +47,7 @@ export const getSelectedSavingTypeId = createSelector(
     fromSavingTypes.getSelectedId
 );
 
-export const getSelectedSavingTypeld = createSelector(
+export const getSelectedSavingType = createSelector(
     getSavingTypeEntities,
     getSelectedSavingTypeId,
     (entities, selectedId) => {
@@ -82,7 +82,7 @@ export const getSelectedExpenseTypeId = createSelector(
     fromExpenseTypes.getSelectedId
 );
 
-export const getSelectedExpenseTypeld = createSelector(
+export const getSelectedExpenseType = createSelector(
     getExpenseTypeEntities,
     getSelectedExpenseTypeId,
     (entities, selectedId) => {
