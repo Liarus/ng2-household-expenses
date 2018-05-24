@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromSettings from '../../reducers';
 import * as savingType from '../../actions/savingType';
-import * as fromPages from '../../../reducers';
+import * as fromCore from '../../../core/reducers';
 import * as pages from '../../../core/actions/pages';
 import { SavingType } from './../../models/savingType.model';
 import { State } from '../../../reducers';
@@ -52,7 +52,7 @@ export class SavingTypePageComponent implements OnInit {
     ];
     this.types = store.pipe(select(fromSettings.getAllSavingTypes));
     this.isLoading = store.pipe(select(fromSettings.getSavingTypesLoading));
-    this.openedModalName = store.pipe(select(fromPages.getOpenedModalName));
+    this.openedModalName = store.pipe(select(fromCore.getOpenedModalName));
     this.selectedType = store.pipe(select(fromSettings.getSelectedSavingType));
   }
 

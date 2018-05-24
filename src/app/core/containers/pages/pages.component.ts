@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
 
 import { MENU } from '../../models/menu.model';
-import * as fromRoot from '../../../reducers';
+import * as fromCore from '../../reducers';
 import * as pages from '../../actions/pages';
 import { MenuItem } from '../../models/menuItem.model';
 
@@ -19,9 +19,9 @@ export class PagesComponent implements OnInit {
   isSidebarExpanded: Observable<Boolean>;
   menuItems: Observable<MenuItem[]>;
 
-  constructor(private store: Store<fromRoot.State>) {
-    this.isSidebarExpanded = store.pipe(select(fromRoot.getIsSidebarExpanded));
-    this.menuItems = store.pipe(select(fromRoot.getMenuItems));
+  constructor(private store: Store<fromCore.State>) {
+    this.isSidebarExpanded = store.pipe(select(fromCore.getIsSidebarExpanded));
+    this.menuItems = store.pipe(select(fromCore.getMenuItems));
   }
 
   ngOnInit() {

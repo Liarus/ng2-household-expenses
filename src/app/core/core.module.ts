@@ -1,9 +1,11 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
 
 import { routing } from './core.routing';
 import { MenuService } from './services/menu.service';
+import { reducers } from './reducers';
 
 import {
     MenuComponent,
@@ -32,7 +34,8 @@ const CORE_PROVIDERS = [
     imports: [
         CommonModule,
         RouterModule,
-        routing
+        routing,
+        StoreModule.forFeature('core', reducers)
     ],
     declarations: [
         CORE_COMPONENTS,

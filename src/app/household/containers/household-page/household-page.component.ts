@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromHouseholds from '../../reducers';
 import * as household from '../../actions/household';
-import * as fromPages from '../../../reducers';
+import * as fromCore from '../../../core/reducers';
 import * as pages from '../../../core/actions/pages';
 import { Household } from '../../models/household.model';
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
@@ -63,7 +63,7 @@ export class HouseholdPageComponent implements OnInit {
     ];
     this.households = store.pipe(select(fromHouseholds.getAllHouseholds));
     this.isLoading = store.pipe(select(fromHouseholds.getHouseholdsLoading));
-    this.openedModalName = store.pipe(select(fromPages.getOpenedModalName));
+    this.openedModalName = store.pipe(select(fromCore.getOpenedModalName));
     this.selectedHousehold = store.pipe(select(fromHouseholds.getSelectedHousehold));
   }
 

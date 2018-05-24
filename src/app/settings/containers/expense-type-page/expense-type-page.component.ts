@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { ExpenseType } from '../../models/ExpenseType.model';
 import * as fromSettings from '../../reducers';
 import * as expenseType from '../../actions/expenseType';
-import * as fromPages from '../../../reducers';
+import * as fromCore from '../../../core/reducers';
 import * as pages from '../../../core/actions/pages';
 import { State } from '../../../reducers';
 import { ExpenseTypeModalNames } from '../../definitions/expenseTypeModalNames.const';
@@ -52,7 +52,7 @@ export class ExpenseTypePageComponent implements OnInit {
     ];
     this.types = store.pipe(select(fromSettings.getAllExpenseTypes));
     this.isLoading = store.pipe(select(fromSettings.getExpenseTypesLoading));
-    this.openedModalName = store.pipe(select(fromPages.getOpenedModalName));
+    this.openedModalName = store.pipe(select(fromCore.getOpenedModalName));
     this.selectedType = store.pipe(select(fromSettings.getSelectedExpenseType));
   }
 
