@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromCore from '../../reducers/index';
+import * as pages from '../../actions/pages';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +12,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private store: Store<fromCore.State>) {
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.store.dispatch(new pages.ResizeWndow(
+      {
+        width: event.target.innerWidth,
+        height: event.target.innerHeight
+      })
+    );
+  }
 }

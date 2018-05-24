@@ -36,3 +36,14 @@ export const getOpenedModalName = createSelector(
     getCompletePagesState,
     fromPages.getOpenedModalName
 );
+
+export const getWindowWidth = createSelector(
+    getCompletePagesState,
+    fromPages.getWindowWidth
+);
+
+export const getWindowHeight = createSelector(
+    getCompletePagesState,
+    fromPages.getWindowHeight
+);
+

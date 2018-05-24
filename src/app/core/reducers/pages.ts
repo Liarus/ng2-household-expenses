@@ -5,13 +5,17 @@ export interface State {
     isSidebarExpanded: boolean;
     menuItems: MenuItem[];
     openedModalName: string;
+    windowHeight: number;
+    windowWidth: number;
 }
 
 export function reducer(
     state: State = {
         isSidebarExpanded: false,
         menuItems: [],
-        openedModalName: null
+        openedModalName: null,
+        windowHeight: window.screen.height,
+        windowWidth: window.screen.width
     },
     action: PagesActions
 ): State {
@@ -33,16 +37,29 @@ export function reducer(
                 ...state,
                 menuItems: action.payload
             };
+
         case PagesActionTypes.OpenModal:
             return {
                 ...state,
                 openedModalName: action.payload
             };
+
         case PagesActionTypes.CloseModal:
             return {
                 ...state,
                 openedModalName: null
             };
+
+        case PagesActionTypes.ResizeWindow: {
+            const height: number = action.payload['height'];
+            const width: number = action.payload['width'];
+            const isMobile: boolean = width < 768 ? true : false;
+            return {
+                ...state,
+                windowHeight: height,
+                windowWidth: width,
+            };
+        }
 
         default:
             return state;
@@ -52,3 +69,5 @@ export function reducer(
 export const getIsSidebarExpanded = (state: State) => state.isSidebarExpanded;
 export const getMenuItems = (state: State) => state.menuItems;
 export const getOpenedModalName = (state: State) => state.openedModalName;
+export const getWindowWidth = (state: State) => state.windowWidth;
+export const getWindowHeight = (state: State) => state.windowHeight;

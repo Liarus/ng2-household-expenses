@@ -7,7 +7,8 @@ export enum PagesActionTypes {
     FillMenuItems = '[Pages] Fill Menu Items',
     ApplyMenuDefinition = '[Pages] Apply Menu Definition',
     OpenModal = '[Pages] Open Modal',
-    CloseModal = '[Pages] Close Modal'
+    CloseModal = '[Pages] Close Modal',
+    ResizeWindow = '[Pages] Resize window'
 }
 
 export class ExpandSidebar implements Action {
@@ -46,10 +47,18 @@ export class CloseModal implements Action {
     }
 }
 
+export class ResizeWndow implements Action {
+    readonly type = PagesActionTypes.ResizeWindow;
+
+    constructor(public payload: Object) {
+    }
+}
+
 export type PagesActions =
     ExpandSidebar
     | CollapseSidebar
     | FillMenuItems
     | ApplyMenuDefinition
     | OpenModal
-    | CloseModal;
+    | CloseModal
+    | ResizeWndow;
