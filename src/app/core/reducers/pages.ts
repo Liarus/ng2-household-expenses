@@ -54,10 +54,12 @@ export function reducer(
             const height: number = action.payload['height'];
             const width: number = action.payload['width'];
             const isMobile: boolean = width < 768 ? true : false;
+            const expanded: boolean = isMobile ? false : state.isSidebarExpanded;
             return {
                 ...state,
                 windowHeight: height,
                 windowWidth: width,
+                isSidebarExpanded: expanded
             };
         }
 
