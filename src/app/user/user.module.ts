@@ -11,12 +11,16 @@ import { CredentialTypeEffects } from './effects/credentialType';
 import { CredentialTypeService } from './services/credentialType.service';
 
 import {
+    UserPageComponent,
+    CredentialTypePageComponent
 } from './containers';
 import {
+    CredentialTypeListComponent
 } from './components';
 
-
 const USER_COMPONENTS = [
+    UserPageComponent,
+    CredentialTypeListComponent
 ];
 
 const USER_PROVIDERS = [
@@ -37,7 +41,8 @@ const USER_PROVIDERS = [
         USER_PROVIDERS
     ],
     declarations: [
-        USER_COMPONENTS
+        USER_COMPONENTS,
+        CredentialTypePageComponent
     ]
 })
 export class UserModule {

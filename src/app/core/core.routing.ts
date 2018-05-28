@@ -11,6 +11,7 @@ export const routes: Routes = [
         children: [
             { path: 'app-households', loadChildren: '../household/household.module#HouseholdModule' },
             { path: 'app-settings', loadChildren: '../settings/settings.module#SettingsModule' },
+            { path: 'app-users', loadChildren: '../user/user.module#UserModule' }
         ]
     }
 ];
