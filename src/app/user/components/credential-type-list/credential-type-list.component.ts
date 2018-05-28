@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+
+import { CredentialType } from './../../models/credentialType.model';
 
 @Component({
   selector: 'app-credential-type-list',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CredentialTypeListComponent implements OnInit {
 
-  constructor() { }
+  @Input() types: CredentialType[];
+  @Input() isLoading: boolean;
+  @Input() cols: any[];
+  @Output() add = new EventEmitter();
+  @Output() edit = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

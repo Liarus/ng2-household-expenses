@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { PrimeNgModule } from '../primeNg/primeNg.module';
 import { routing } from './user.routing';
-import { reducers } from '../reducers';
+import { reducers } from './reducers';
 import { CredentialTypeEffects } from './effects/credentialType';
 import { CredentialTypeService } from './services/credentialType.service';
 

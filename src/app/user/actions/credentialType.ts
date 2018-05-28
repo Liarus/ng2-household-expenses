@@ -92,9 +92,6 @@ export class SelectCredentialType implements Action {
 
 export class LoadCredentialTypes implements Action {
     readonly type = CredentialTypeActionTypes.LoadCredentialTypes;
-
-    constructor(public payload: number) {
-    }
 }
 
 export class LoadCredentialTypesSuccess implements Action {

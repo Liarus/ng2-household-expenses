@@ -34,19 +34,19 @@ export const getCredentialTypesLoading = createSelector(
     fromCredentialTypes.getLoading
 );
 
-export const getHouseholdErrorMessage = createSelector(
+export const getCredentialTypeErrorMessage = createSelector(
     getCredentialTypeEntitiesState,
     fromCredentialTypes.getErrorMessage
 );
 
-export const getSelectedHouseholdId = createSelector(
+export const getSelectedCredentialTypeId = createSelector(
     getCredentialTypeEntitiesState,
     fromCredentialTypes.getSelectedId
 );
 
-export const getSelectedHousehold = createSelector(
+export const getSelectedCredentialType = createSelector(
     getCredentialTypeEntities,
-    getSelectedHouseholdId,
+    getSelectedCredentialTypeId,
     (entities, selectedId) => {
         return selectedId && entities[selectedId];
     }
