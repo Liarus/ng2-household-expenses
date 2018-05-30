@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-
+import { Observable } from 'rxjs/Observable';   
 import * as fromUser from '../../reducers';
 import * as status from '../../actions/status';
 import { State } from '../../../reducers';
@@ -35,7 +34,6 @@ export class UserPageComponent implements OnInit {
 
   constructor(private store: Store<fromUser.State>) {
     this.activeTabIndex = store.pipe(select(fromUser.getActiveTabIndex));
-    this.activeTabIndex.subscribe(e => console.log(e));
   }
 
   ngOnInit() {
