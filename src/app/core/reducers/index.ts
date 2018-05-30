@@ -17,33 +17,33 @@ export const reducers: ActionReducerMap<CoreState> = {
 
 export const getCoreState = createFeatureSelector<CoreState>('core');
 
-export const getCompletePagesState = createSelector(
+export const getPagesState = createSelector(
     getCoreState,
-    (state: CoreState) => state.pages
+    state => state.pages
 );
 
 export const getIsSidebarExpanded = createSelector(
-    getCompletePagesState,
+    getPagesState,
     fromPages.getIsSidebarExpanded
 );
 
 export const getMenuItems = createSelector(
-    getCompletePagesState,
+    getPagesState,
     fromPages.getMenuItems
 );
 
 export const getOpenedModalName = createSelector(
-    getCompletePagesState,
+    getPagesState,
     fromPages.getOpenedModalName
 );
 
 export const getWindowWidth = createSelector(
-    getCompletePagesState,
+    getPagesState,
     fromPages.getWindowWidth
 );
 
 export const getWindowHeight = createSelector(
-    getCompletePagesState,
+    getPagesState,
     fromPages.getWindowHeight
 );
 

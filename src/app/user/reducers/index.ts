@@ -2,11 +2,13 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 
 import * as fromCredentialTypes from './credentialType';
 import * as fromPermissions from './permission';
+import * as fromStatus from './status';
 import * as fromRoot from '../../reducers';
 
 export interface UserState {
     credentialTypes: fromCredentialTypes.State;
     permissions: fromPermissions.State;
+    status: fromStatus.State;
 }
 
 export interface State extends fromRoot.State {
@@ -15,7 +17,8 @@ export interface State extends fromRoot.State {
 
 export const reducers: ActionReducerMap<UserState> = {
     credentialTypes: fromCredentialTypes.reducer,
-    permissions: fromPermissions.reducer
+    permissions: fromPermissions.reducer,
+    status: fromStatus.reducer
 };
 
 export const getUsersState = createFeatureSelector<UserState>('users');
@@ -88,4 +91,14 @@ export const getSelectedPermission = createSelector(
     (entities, selectedId) => {
         return selectedId && entities[selectedId];
     }
+);
+
+export const getStatusState = createSelector(
+    getUsersState,
+    state => state.status
+);
+
+export const getActiveTabIndex = createSelector(
+    getStatusState,
+    fromStatus.getActiveTabIndex
 );

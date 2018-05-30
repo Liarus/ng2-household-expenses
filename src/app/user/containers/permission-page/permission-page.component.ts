@@ -42,5 +42,4 @@ export class PermissionPageComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new permission.LoadPermissions());
   }
-
 }
