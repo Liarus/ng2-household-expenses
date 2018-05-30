@@ -1,10 +1,12 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromCredentialTypes from './credentialType';
+import * as fromPermissions from './permission';
 import * as fromRoot from '../../reducers';
 
 export interface UserState {
     credentialTypes: fromCredentialTypes.State;
+    permissions: fromPermissions.State;
 }
 
 export interface State extends fromRoot.State {
@@ -12,7 +14,8 @@ export interface State extends fromRoot.State {
 }
 
 export const reducers: ActionReducerMap<UserState> = {
-    credentialTypes: fromCredentialTypes.reducer
+    credentialTypes: fromCredentialTypes.reducer,
+    permissions: fromPermissions.reducer
 };
 
 export const getUsersState = createFeatureSelector<UserState>('users');
@@ -47,6 +50,41 @@ export const getSelectedCredentialTypeId = createSelector(
 export const getSelectedCredentialType = createSelector(
     getCredentialTypeEntities,
     getSelectedCredentialTypeId,
+    (entities, selectedId) => {
+        return selectedId && entities[selectedId];
+    }
+);
+
+export const getPermissionEntitiesState = createSelector(
+    getUsersState,
+    state => state.permissions
+);
+
+export const {
+    selectIds: getPermissionIds,
+    selectEntities: getPermissionEntities,
+    selectAll: getAllPermissions,
+    selectTotal: getTotalPermissions,
+} = fromPermissions.adapter.getSelectors(getPermissionEntitiesState);
+
+export const getPermissionsLoading = createSelector(
+    getPermissionEntitiesState,
+    fromPermissions.getLoading
+);
+
+export const getPermissionErrorMessage = createSelector(
+    getPermissionEntitiesState,
+    fromPermissions.getErrorMessage
+);
+
+export const getSelectedPermissionId = createSelector(
+    getPermissionEntitiesState,
+    fromPermissions.getSelectedId
+);
+
+export const getSelectedPermission = createSelector(
+    getPermissionEntitiesState,
+    getSelectedPermissionId,
     (entities, selectedId) => {
         return selectedId && entities[selectedId];
     }

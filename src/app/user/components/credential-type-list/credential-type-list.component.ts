@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { CredentialType } from './../../models/credentialType.model';
 
 @Component({
   selector: 'app-credential-type-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './credential-type-list.component.html',
   styleUrls: ['./credential-type-list.component.scss']
 })

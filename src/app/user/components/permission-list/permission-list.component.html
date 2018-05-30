@@ -1,0 +1,42 @@
+<p-table #dt [columns]="cols"
+  [value]="permissions"
+  [paginator]="true"
+  [rows]="20" 
+  [responsive]="true"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th>Command</th>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field" [class]="col.className">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+    <tr>
+      <th></th>
+      <th *ngFor="let col of columns" [class]="col.className">
+        <input pInputText type="text"
+          style="width:100%"
+          (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)"
+        >
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td>
+        <button type="button" pButton icon="fa-pencil" (click)="edit.emit(rowData['id'])"></button>
+        <button type="button" pButton icon="fa-trash" (click)="delete.emit({id: rowData['id']})"></button>
+      </td>
+      <td *ngFor="let col of columns" [class]="col.className">
+        <span class="ui-column-title">{{col.header}}</span>
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa-plus" (click)="add.emit()" label="Add"></button>
+    </div>
+  </ng-template>
+</p-table>

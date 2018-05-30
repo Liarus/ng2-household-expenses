@@ -1,29 +1,29 @@
+import { Permission } from './../../models/permission.model';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
 import * as fromUser from '../../reducers';
-import * as credentialType from '../../actions/credentialType';
+import * as permission from '../../actions/permission';
 import * as fromCore from '../../../core/reducers';
 import * as pages from '../../../core/actions/pages';
 import { State } from '../../../reducers';
-import { CredentialType } from '../../models/credentialType.model';
 
 @Component({
-  selector: 'app-credential-type-page',
+  selector: 'app-permission-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./credential-type-page.component.scss'],
+  styleUrls: ['./permission-page.component.scss'],
   template: `
-    <app-credential-type-list [types]="types|async"
-      [cols]="cols"
-      [isLoading]="isLoading|async"
-    ></app-credential-type-list>
+    <app-permission-list [permissions]="permissions|async"
+    [cols]="cols"
+    [isLoading]="isLoading|async"
+    ></app-permission-list>
   `
 })
-export class CredentialTypePageComponent implements OnInit {
+export class PermissionPageComponent implements OnInit {
 
-  types: Observable<CredentialType[]>;
-  selectedType: Observable<CredentialType>;
+  permissions: Observable<Permission[]>;
+  selectedPermission: Observable<Permission>;
   isLoading: Observable<boolean>;
   openedModalName: Observable<string>;
   cols: any[];
@@ -33,14 +33,14 @@ export class CredentialTypePageComponent implements OnInit {
       { field: 'name', header: 'Name', className: '' },
       { field: 'code', header: 'Code', className: '' }
     ];
-    this.types = store.pipe(select(fromUser.getAllCredentialTypes));
-    this.isLoading = store.pipe(select(fromUser.getCredentialTypesLoading));
+    this.permissions = store.pipe(select(fromUser.getAllPermissions));
+    this.isLoading = store.pipe(select(fromUser.getPermissionsLoading));
     this.openedModalName = store.pipe(select(fromCore.getOpenedModalName));
-    this.selectedType = store.pipe(select(fromUser.getSelectedCredentialType));
+    this.selectedPermission = store.pipe(select(fromUser.getSelectedPermission));
   }
 
   ngOnInit() {
-    this.store.dispatch(new credentialType.LoadCredentialTypes());
+    this.store.dispatch(new permission.LoadPermissions());
   }
 
 }

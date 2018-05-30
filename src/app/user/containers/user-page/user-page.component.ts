@@ -5,18 +5,27 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./user-page.component.scss'],
   template: `
-    <div class="ui-g">
-      <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+    <p-tabView>
+      <p-tabPanel header="Credential Types">
         <app-credential-type-page></app-credential-type-page>
-      </div>
-    </div>
+      </p-tabPanel>
+      <p-tabPanel header="Permissions">
+        <app-permission-page></app-permission-page>
+      </p-tabPanel>
+      <p-tabPanel header="User Roles">
+        Content 3
+      </p-tabPanel>
+      <p-tabPanel header="Users">
+        Content 4
+      </p-tabPanel>
+    </p-tabView>
   `
 })
 export class UserPageComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
 }

@@ -9,22 +9,30 @@ import { routing } from './user.routing';
 import { reducers } from './reducers';
 import { CredentialTypeEffects } from './effects/credentialType';
 import { CredentialTypeService } from './services/credentialType.service';
+import { PermissionEffects } from './effects/permission';
+import { PermissionService } from './services/permission.service';
 
 import {
     UserPageComponent,
-    CredentialTypePageComponent
+    CredentialTypePageComponent,
+    PermissionPageComponent
 } from './containers';
 import {
-    CredentialTypeListComponent
+    CredentialTypeListComponent,
+    PermissionListComponent
 } from './components';
 
 const USER_COMPONENTS = [
     UserPageComponent,
-    CredentialTypeListComponent
+    CredentialTypePageComponent,
+    PermissionPageComponent,
+    CredentialTypeListComponent,
+    PermissionListComponent
 ];
 
 const USER_PROVIDERS = [
-    CredentialTypeService
+    CredentialTypeService,
+    PermissionService
 ];
 
 @NgModule({
@@ -35,14 +43,13 @@ const USER_PROVIDERS = [
         routing,
         PrimeNgModule,
         StoreModule.forFeature('users', reducers),
-        EffectsModule.forFeature([CredentialTypeEffects])
+        EffectsModule.forFeature([CredentialTypeEffects, PermissionEffects])
     ],
     providers: [
         USER_PROVIDERS
     ],
     declarations: [
-        USER_COMPONENTS,
-        CredentialTypePageComponent
+        USER_COMPONENTS
     ]
 })
 export class UserModule {
