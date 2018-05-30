@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';   
+import { Observable } from 'rxjs/Observable';
 import * as fromUser from '../../reducers';
 import * as status from '../../actions/status';
 import { State } from '../../../reducers';
