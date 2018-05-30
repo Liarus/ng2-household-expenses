@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -15,13 +15,11 @@ import { AppComponent } from './core/containers';
 import { CoreModule } from './core/core.module';
 import { reducers, metaReducers } from './reducers';
 import { PagesEffects } from './core/effects/pages';
-import { AppConfigDev } from './shared/configs/appConfig.dev';
-import { HttpService } from './shared/services/http.service';
+
 import { environment } from '../environments/environment';
 import { CustomRouterStateSerializer } from './shared/states/routerState';
 
 const APP_PROVIDERS = [
-  HttpService
 ];
 
 @NgModule({
@@ -32,7 +30,6 @@ const APP_PROVIDERS = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    HttpClientModule,
     NgbModule.forRoot(),
     CoreModule.forRoot(),
     routing,
@@ -48,7 +45,6 @@ const APP_PROVIDERS = [
   ],
   providers: [
     APP_PROVIDERS,
-    { provide: 'IAppConfig', useClass: AppConfigDev },
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
   ],
   bootstrap: [AppComponent]
