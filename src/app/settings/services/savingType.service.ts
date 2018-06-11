@@ -31,7 +31,7 @@ export class SavingTypeService {
     }
 
     update(request: ModifySavingType): Observable<any> {
-        return this.httpService.post<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.savingTypeEndpoint}`, request
         );
     }

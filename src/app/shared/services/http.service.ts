@@ -19,7 +19,7 @@ export class HttpService {
         return this.httpClient.get<T>(url, httpOptions);
     }
 
-    post<T>(url: string, model: any): Observable<T> {
+    postModel<T>(url: string, model: any): Observable<T> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-type': 'application/json',
@@ -28,6 +28,17 @@ export class HttpService {
         };
 
         return this.httpClient.post<T>(url, model, httpOptions);
+    }
+
+    post<T>(url: string): Observable<T> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            })
+        };
+
+        return this.httpClient.post<T>(url, httpOptions);
     }
 
     put<T>(url: string, model: any): Observable<T> {

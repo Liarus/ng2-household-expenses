@@ -31,7 +31,7 @@ export class HouseholdService {
     }
 
     update(request: ModifyHousehold): Observable<any> {
-        return this.httpService.post<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.householdEndpoint}`, request
         );
     }

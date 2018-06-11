@@ -31,7 +31,7 @@ export class ExpenseTypeService {
     }
 
     update(request: ModifyExpenseType): Observable<any> {
-        return this.httpService.post<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.expenseTypeEndpoint}`, request
         );
     }
