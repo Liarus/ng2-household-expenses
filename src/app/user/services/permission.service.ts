@@ -27,7 +27,7 @@ export class PermissionService {
     }
 
     update(request: ModifyPermission): Observable<any> {
-        return this.httpService.post<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.permissionEndpoint}`, request
         );
     }

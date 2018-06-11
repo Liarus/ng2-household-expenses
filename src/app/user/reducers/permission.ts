@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { Permission } from './../models/permission.model';
-import { PermissionActions, PermissionActionTypes, AddPermissionSuccess } from './../actions/permission';
+import { PermissionActions, PermissionActionTypes } from './../actions/permission';
 
 export interface State extends EntityState<Permission> {
     selectedPermissionId: number;

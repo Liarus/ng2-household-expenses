@@ -26,7 +26,7 @@ export class CredentialTypeService {
     }
 
     update(request: ModifyCredentialType): Observable<any> {
-        return this.httpService.post<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.credentialTypeEndpoint}`, request
         );
     }

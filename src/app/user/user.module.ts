@@ -15,11 +15,13 @@ import { PermissionService } from './services/permission.service';
 import {
     UserPageComponent,
     CredentialTypePageComponent,
-    PermissionPageComponent
+    PermissionPageComponent,
+    RolePageComponent
 } from './containers';
 import {
     CredentialTypeListComponent,
-    PermissionListComponent
+    PermissionListComponent,
+    RoleListComponent
 } from './components';
 
 const USER_COMPONENTS = [
@@ -27,7 +29,9 @@ const USER_COMPONENTS = [
     CredentialTypePageComponent,
     PermissionPageComponent,
     CredentialTypeListComponent,
-    PermissionListComponent
+    PermissionListComponent,
+    RolePageComponent,
+    RoleListComponent
 ];
 
 const USER_PROVIDERS = [

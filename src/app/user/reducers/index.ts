@@ -3,11 +3,13 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 import * as fromCredentialTypes from './credentialType';
 import * as fromPermissions from './permission';
 import * as fromStatus from './status';
+import * as fromRoles from './role';
 import * as fromRoot from '../../reducers';
 
 export interface UserState {
     credentialTypes: fromCredentialTypes.State;
     permissions: fromPermissions.State;
+    roles: fromRoles.State;
     status: fromStatus.State;
 }
 
@@ -18,6 +20,7 @@ export interface State extends fromRoot.State {
 export const reducers: ActionReducerMap<UserState> = {
     credentialTypes: fromCredentialTypes.reducer,
     permissions: fromPermissions.reducer,
+    roles: fromRoles.reducer,
     status: fromStatus.reducer
 };
 
@@ -101,4 +104,59 @@ export const getStatusState = createSelector(
 export const getActiveTabIndex = createSelector(
     getStatusState,
     fromStatus.getActiveTabIndex
+);
+
+export const getRoleEntitiesState = createSelector(
+    getUsersState,
+    state => state.roles
+);
+
+export const {
+    selectIds: getRoleIds,
+    selectEntities: getRoleEntities,
+    selectAll: getAllRoles,
+    selectTotal: getTotalRoles,
+} = fromRoles.adapter.getSelectors(getRoleEntitiesState);
+
+export const getRolesLoading = createSelector(
+    getRoleEntitiesState,
+    fromRoles.getLoading
+);
+
+export const getRoleErrorMessage = createSelector(
+    getRoleEntitiesState,
+    fromRoles.getErrorMessage
+);
+
+export const getSelectedRoleId = createSelector(
+    getRoleEntitiesState,
+    fromRoles.getSelectedId
+);
+
+export const getSelectedRole = createSelector(
+    getRoleEntitiesState,
+    getSelectedRoleId,
+    (entities, selectedId) => {
+        return selectedId && entities[selectedId];
+    }
+);
+
+export const getSelectedRoleWithPermissions = createSelector(
+    getRoleEntitiesState,
+    getSelectedRoleId,
+    getPermissionEntities,
+    (entities, selectedId, permissions) => {
+        const role =  selectedId && entities[selectedId];
+        return {...role, permissions: role.permissionIds.map(permissionId => permissions[permissionId])};
+    }
+);
+
+export const getRolesWithPermissions = createSelector(
+    getAllRoles,
+    getPermissionEntities,
+    (roles, permissions) => {
+        return roles.map( role => {
+            return {...role, permissions: role.permissionIds.map(permissionId => permissions[permissionId])};
+        });
+    }
 );

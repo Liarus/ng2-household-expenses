@@ -20,7 +20,7 @@ import { State } from '../../../reducers';
         <app-permission-page></app-permission-page>
       </p-tabPanel>
       <p-tabPanel header="User Roles">
-        Content 3
+        <app-role-page></app-role-page>
       </p-tabPanel>
       <p-tabPanel header="Users">
         Content 4
