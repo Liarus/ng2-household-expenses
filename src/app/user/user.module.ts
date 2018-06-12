@@ -11,6 +11,8 @@ import { CredentialTypeEffects } from './effects/credentialType';
 import { CredentialTypeService } from './services/credentialType.service';
 import { PermissionEffects } from './effects/permission';
 import { PermissionService } from './services/permission.service';
+import { RoleEffects } from './effects/role';
+import { RoleService } from './services/role.service';
 
 import {
     UserPageComponent,
@@ -36,7 +38,8 @@ const USER_COMPONENTS = [
 
 const USER_PROVIDERS = [
     CredentialTypeService,
-    PermissionService
+    PermissionService,
+    RoleService
 ];
 
 @NgModule({
@@ -47,7 +50,7 @@ const USER_PROVIDERS = [
         routing,
         PrimeNgModule,
         StoreModule.forFeature('users', reducers),
-        EffectsModule.forFeature([CredentialTypeEffects, PermissionEffects])
+        EffectsModule.forFeature([CredentialTypeEffects, PermissionEffects, RoleEffects])
     ],
     providers: [
         USER_PROVIDERS

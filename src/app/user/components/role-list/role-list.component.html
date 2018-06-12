@@ -1,3 +1,59 @@
-<p>
-  role-list works!
-</p>
+<p-table #dt [columns]="cols"
+  [value]="roles"
+  [paginator]="true"
+  [rows]="20" 
+  [responsive]="true"
+  dataKey="code"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 2.25em"></th>
+      <th>Command</th>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field" [class]="col.className">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th *ngFor="let col of columns" [class]="col.className">
+        <input pInputText type="text"
+          style="width:100%"
+          (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)"
+        >
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-expanded="expanded">
+    <tr>
+      <td>
+        <a href="#" [pRowToggler]="rowData">
+          <i [ngClass]="expanded ? 'fa fa-chevron-circle-down': 'fa fa-chevron-circle-right'" 
+            style="font-size: 1.25em"
+          ></i>
+        </a>
+      </td>
+      <td>
+        <button type="button" pButton icon="fa-pencil" (click)="edit.emit(rowData['id'])"></button>
+        <button type="button" pButton icon="fa-trash" (click)="delete.emit({id: rowData['id']})"></button>
+      </td>
+      <td *ngFor="let col of columns" [class]="col.className">
+        <span class="ui-column-title">{{col.header}}</span>
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+      <tr *ngFor="let permission of rowData.permissions">
+        <td [attr.colspan]="columns.length + 2">
+         {{permission.name}}
+        </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+      <button type="button" pButton icon="fa-plus" (click)="add.emit()" label="Add"></button>
+    </div>
+  </ng-template>
+</p-table>

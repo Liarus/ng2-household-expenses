@@ -1,8 +1,8 @@
-import { Permission } from './../../models/permission.model';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
+import { Permission } from './../../models/permission.model';
 import * as fromUser from '../../reducers';
 import * as permission from '../../actions/permission';
 import * as fromCore from '../../../core/reducers';
