@@ -23,7 +23,9 @@ import {
 import {
     CredentialTypeListComponent,
     PermissionListComponent,
-    RoleListComponent
+    RoleListComponent,
+    RoleCreateModalComponent,
+    RoleUpdateModalComponent
 } from './components';
 
 const USER_COMPONENTS = [
@@ -33,7 +35,9 @@ const USER_COMPONENTS = [
     CredentialTypeListComponent,
     PermissionListComponent,
     RolePageComponent,
-    RoleListComponent
+    RoleListComponent,
+    RoleCreateModalComponent,
+    RoleUpdateModalComponent
 ];
 
 const USER_PROVIDERS = [

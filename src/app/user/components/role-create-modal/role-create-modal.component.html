@@ -1,0 +1,54 @@
+<p-dialog header="New Role" 
+    [responsive]="true" 
+    showEffect="fade" 
+    [modal]="true" 
+    [width]="400"
+    [visible]="true"
+    [closeOnEscape]="false"
+    [closable]="false"
+>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-4 ui-label">
+          <label for="name">Name</label>
+        </div>
+        <div class="ui-g-8">
+          <input pInputText id="name"
+            placeholder="Required"
+            [formControl]="formGroup.get('name')"
+          />
+        </div>
+      </div>
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-4 ui-label">
+          <label for="code">Code</label>
+        </div>
+        <div class="ui-g-8">
+          <input pInputText id="code"
+            placeholder="Required"
+            [formControl]="formGroup.get('code')" 
+          />
+        </div>
+      </div>
+      <div class="ui-g ui-g-12 ui-g-nopad">
+        <div class="ui-g-4 ui-label">
+          <label for="permissions">Permissions</label>
+        </div>
+        <div class="ui-g-8">
+          <p-multiSelect id="permissions"
+            appendTo="body"
+            [options]="permissionSelect" 
+            [formControl]="formGroup.get('permissionIds')"
+          ></p-multiSelect>
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa-close" (click)="cancel.emit()" label="Cancel"></button>
+        <button type="submit" pButton icon="fa-check" label="Save"></button>
+      </div>
+    </p-footer>
+  </form>
+</p-dialog>

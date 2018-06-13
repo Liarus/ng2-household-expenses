@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         InputTextModule,
         DialogModule,
         TabViewModule,
-        InputTextareaModule
+        InputTextareaModule,
+        MultiSelectModule
     ],
     exports: [
         TableModule,
@@ -21,7 +23,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         InputTextModule,
         DialogModule,
         TabViewModule,
-        InputTextareaModule
+        InputTextareaModule,
+        MultiSelectModule
     ],
   })
   export class PrimeNgModule {
