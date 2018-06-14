@@ -12,6 +12,7 @@ import { RoleModalNames } from '../../definitions/roleModalNames';
 import { ModifyRole } from './../../models/requests/modifyRole.model';
 import { CreateRole } from './../../models/requests/createRole.model';
 import { Permission } from './../../models/permission.model';
+import { Role } from '../../models/role.model';
 
 @Component({
   selector: 'app-role-page',
@@ -30,12 +31,18 @@ import { Permission } from './../../models/permission.model';
     (cancel)="hideAddModal($event)"
     (ok)="createRole($event)"
   ></app-role-create-modal>
+  <app-role-update-modal *ngIf="(openedModalName|async)==='ROLE_UPDATE_DIALOG'"
+    [role]="selectedRole|async"
+    [permissions]="permissions|async"
+    (cancel)="hideUpdateModal($event)"
+    (ok)="modifyRole($event)"
+  ></app-role-update-modal>
   `
 })
 export class RolePageComponent implements OnInit {
 
   roles: Observable<RoleWithPermissions[]>;
-  selectedRole: Observable<RoleWithPermissions>;
+  selectedRole: Observable<Role>;
   permissions: Observable<Permission[]>;
   isLoading: Observable<boolean>;
   openedModalName: Observable<string>;
@@ -49,7 +56,8 @@ export class RolePageComponent implements OnInit {
     this.roles = store.pipe(select(fromUser.getRolesWithPermissions));
     this.isLoading = store.pipe(select(fromUser.getPermissionsLoading));
     this.openedModalName = store.pipe(select(fromCore.getOpenedModalName));
-    this.selectedRole = store.pipe(select(fromUser.getSelectedRoleWithPermissions));
+    this.selectedRole = store.pipe(select(fromUser.getSelectedRole));
+    this.selectedRole.subscribe(e => console.log(e));
     this.permissions = store.pipe(select(fromUser.getAllPermissions));
   }
 

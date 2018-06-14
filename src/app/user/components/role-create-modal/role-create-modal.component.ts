@@ -18,7 +18,6 @@ const fg = dataItem => new FormGroup({
 })
 export class RoleCreateModalComponent implements OnInit {
 
-  @Input() userId: number;
   @Input() permissions: Permission[];
   @Output() cancel = new EventEmitter();
   @Output() ok = new EventEmitter<CreateRole>();

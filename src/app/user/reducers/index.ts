@@ -134,7 +134,7 @@ export const getSelectedRoleId = createSelector(
 );
 
 export const getSelectedRole = createSelector(
-    getRoleEntitiesState,
+    getRoleEntities,
     getSelectedRoleId,
     (entities, selectedId) => {
         return selectedId && entities[selectedId];
@@ -142,7 +142,7 @@ export const getSelectedRole = createSelector(
 );
 
 export const getSelectedRoleWithPermissions = createSelector(
-    getRoleEntitiesState,
+    getRoleEntities,
     getSelectedRoleId,
     getPermissionEntities,
     (entities, selectedId, permissions) => {
