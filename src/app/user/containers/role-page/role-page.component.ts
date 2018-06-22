@@ -22,7 +22,7 @@ import { Role } from '../../models/role.model';
   <app-role-list [roles]="roles|async"
     [cols]="cols"
     [isLoading]="isLoading|async"
-    (add)=addRole($event)
+    (add)=addRole()
     (edit)=updateRole($event)
     (delete)=deleteRole($event)
   ></app-role-list>

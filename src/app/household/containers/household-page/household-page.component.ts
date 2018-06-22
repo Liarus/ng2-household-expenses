@@ -24,7 +24,7 @@ import { DeleteHousehold } from '../../models/requests/deleteHousehold.model';
         <app-household-list [households]="households|async"
           [cols]="cols"
           [isLoading]="isLoading|async"
-          (add)=addHousehold($event)
+          (add)=addHousehold()
           (edit)=updateHousehold($event)
           (delete)=deleteHousehold($event)
         ></app-household-list>

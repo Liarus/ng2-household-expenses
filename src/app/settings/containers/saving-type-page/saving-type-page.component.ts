@@ -21,7 +21,7 @@ import { ModifySavingType } from './../../models/requests/modifySavingType.model
     <app-saving-type-list [types]="types|async"
       [cols]="cols"
       [isLoading]="isLoading|async"
-      (add)=addType($event)
+      (add)=addType()
       (edit)=updateType($event)
       (delete)=deleteType($event)
     ></app-saving-type-list>

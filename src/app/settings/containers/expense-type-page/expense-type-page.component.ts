@@ -21,7 +21,7 @@ import { CreateExpenseType } from './../../models/requests/createExpenseType.mod
     <app-expense-type-list [types]="types|async"
       [cols]="cols"
       [isLoading]="isLoading|async"
-      (add)=addType($event)
+      (add)=addType()
       (edit)=updateType($event)
       (delete)=deleteType($event)
     ></app-expense-type-list>
