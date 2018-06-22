@@ -13,7 +13,8 @@ export class HttpService {
                 'Cache-Control': 'no-cache',
                 'Pragma': 'no-cache',
                 'Expires': 'Sat, 01 Jan 2000 00:00:00 GMT'
-            })
+            }),
+            withCredentials: true
           };
 
         return this.httpClient.get<T>(url, httpOptions);
@@ -24,7 +25,8 @@ export class HttpService {
             headers: new HttpHeaders({
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
-            })
+            }),
+            withCredentials: true
         };
 
         return this.httpClient.post<T>(url, model, httpOptions);
@@ -35,7 +37,8 @@ export class HttpService {
             headers: new HttpHeaders({
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
-            })
+            }),
+            withCredentials: true
         };
 
         return this.httpClient.post<T>(url, httpOptions);
@@ -46,7 +49,8 @@ export class HttpService {
             headers: new HttpHeaders({
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
-            })
+            }),
+            withCredentials: true
         };
 
         return this.httpClient.put<T>(url, model, httpOptions);
@@ -57,6 +61,7 @@ export class HttpService {
             headers: new HttpHeaders({
                 'Content-type': 'application/json'
             }),
+            withCredentials: true
         };
 
         return this.httpClient.delete(url, httpOptions);
