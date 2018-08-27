@@ -4,8 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
 
 import { MENU } from '../../models/menu.model';
-import * as fromCore from '../../reducers';
-import * as pages from '../../actions/pages';
+import * as fromCore from '../../state/reducers';
+import * as pages from '../../state/actions/pages';
 import { MenuItem } from '../../models/menuItem.model';
 
 @Component({

@@ -5,8 +5,8 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromSettings from '../../reducers';
 import * as savingType from '../../actions/savingType';
-import * as fromCore from '../../../core/reducers';
-import * as pages from '../../../core/actions/pages';
+import * as fromCore from '../../../core/state/reducers';
+import * as pages from '../../../core/state/actions/pages';
 import { SavingType } from './../../models/savingType.model';
 import { State } from '../../../reducers';
 import { CreateSavingType } from '../../models/requests/createSavingType.model';

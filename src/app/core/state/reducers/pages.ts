@@ -1,5 +1,5 @@
 import { PagesActions, PagesActionTypes } from './../actions/pages';
-import { MenuItem } from '../models/menuItem.model';
+import { MenuItem } from '../../models/menuItem.model';
 
 export interface State {
     isSidebarExpanded: boolean;

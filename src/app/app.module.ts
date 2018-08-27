@@ -14,7 +14,7 @@ import { routing } from './app.routing';
 import { AppComponent } from './core/containers';
 import { CoreModule } from './core/core.module';
 import { reducers, metaReducers } from './reducers';
-import { PagesEffects } from './core/effects/pages';
+import { PagesEffects } from './core/state/effects/pages';
 
 import { environment } from '../environments/environment';
 import { CustomRouterStateSerializer } from './shared/states/routerState';

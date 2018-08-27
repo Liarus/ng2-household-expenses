@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { routing } from './core.routing';
 import { MenuService } from './services/menu.service';
-import { reducers } from './reducers';
+import { reducers } from './state/reducers';
 import { HttpService } from '../shared/services/http.service';
 import { AppConfigDev } from '../shared/configs/appConfig.dev';
 

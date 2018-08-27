@@ -1,7 +1,7 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromPages from './pages';
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../../reducers';
 
 export interface CoreState {
     pages: fromPages.State;

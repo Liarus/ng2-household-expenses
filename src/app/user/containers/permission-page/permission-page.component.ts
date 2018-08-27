@@ -5,8 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { Permission } from './../../models/permission.model';
 import * as fromUser from '../../reducers';
 import * as permission from '../../actions/permission';
-import * as fromCore from '../../../core/reducers';
-import * as pages from '../../../core/actions/pages';
+import * as fromCore from '../../../core/state/reducers';
 import { State } from '../../../reducers';
 
 @Component({

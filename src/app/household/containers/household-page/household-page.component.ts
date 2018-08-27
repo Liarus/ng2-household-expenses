@@ -5,8 +5,8 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromHouseholds from '../../reducers';
 import * as household from '../../actions/household';
-import * as fromCore from '../../../core/reducers';
-import * as pages from '../../../core/actions/pages';
+import * as fromCore from '../../../core/state/reducers';
+import * as pages from '../../../core/state/actions/pages';
 import { Household } from '../../models/household.model';
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';

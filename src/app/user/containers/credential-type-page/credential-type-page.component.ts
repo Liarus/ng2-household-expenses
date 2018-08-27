@@ -4,8 +4,7 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromUser from '../../reducers';
 import * as credentialType from '../../actions/credentialType';
-import * as fromCore from '../../../core/reducers';
-import * as pages from '../../../core/actions/pages';
+import * as fromCore from '../../../core/state/reducers';
 import { State } from '../../../reducers';
 import { CredentialType } from '../../models/credentialType.model';
 

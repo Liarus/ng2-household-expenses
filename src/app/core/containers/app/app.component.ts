@@ -1,8 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as fromCore from '../../reducers/index';
-import * as pages from '../../actions/pages';
+import * as fromCore from '../../state/reducers/index';
+import * as pages from '../../state/actions/pages';
 
 @Component({
   selector: 'app-root',

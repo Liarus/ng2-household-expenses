@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { MenuItem } from '../models/menuItem.model';
+import { MenuItem } from '../../models/menuItem.model';
 
 export enum PagesActionTypes {
     ExpandSidebar = '[Pages] Expand Sidebar',
