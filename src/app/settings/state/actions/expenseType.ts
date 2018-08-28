@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 
-import { CreateExpenseType } from '../models/requests/createExpenseType.model';
-import { ExpenseType } from '../models/expenseType.model';
-import { ModifyExpenseType } from '../models/requests/modifyExpenseType.model';
-import { DeleteExpenseType } from '../models/requests/deleteExpenseType.model';
+import { CreateExpenseType } from '../../models/requests/createExpenseType.model';
+import { ExpenseType } from '../../models/expenseType.model';
+import { ModifyExpenseType } from '../../models/requests/modifyExpenseType.model';
+import { DeleteExpenseType } from '../../models/requests/deleteExpenseType.model';
 
 export enum ExpenseTypeActionTypes {
     AddExpenseType = '[ExpenseType] Add Expense Type',

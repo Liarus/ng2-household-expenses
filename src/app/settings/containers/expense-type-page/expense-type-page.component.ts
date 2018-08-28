@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
 import { ExpenseType } from '../../models/ExpenseType.model';
-import * as fromSettings from '../../reducers';
-import * as expenseType from '../../actions/expenseType';
+import * as fromSettings from '../../state/reducers';
+import * as expenseType from '../../state/actions/expenseType';
 import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
 import { State } from '../../../state/reducers';

@@ -3,7 +3,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 
-import { SavingTypeService } from './../services/savingType.service';
+import { SavingTypeService } from './../../services/savingType.service';
 import {
     SavingTypeActionTypes,
     AddSavingType,
@@ -19,10 +19,10 @@ import {
     RemoveSavingTypeSuccess,
     RemoveSavingTypeFail
 } from '../actions/savingType';
-import { CreateSavingType } from '../models/requests/createSavingType.model';
-import { ModifySavingType } from './../models/requests/modifySavingType.model';
-import { DeleteSavingType } from './../models/requests/deleteSavingType.model';
-import { SavingType } from './../models/savingType.model';
+import { CreateSavingType } from './../../models/requests/createSavingType.model';
+import { ModifySavingType } from './../../models/requests/modifySavingType.model';
+import { DeleteSavingType } from './../../models/requests/deleteSavingType.model';
+import { SavingType } from './../../models/savingType.model';
 
 @Injectable()
 export class SavingTypeEffects {

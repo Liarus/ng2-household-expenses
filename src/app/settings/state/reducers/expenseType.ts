@@ -1,58 +1,58 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { SavingType } from '../models/savingType.model';
-import { SavingTypeActions, SavingTypeActionTypes } from './../actions/savingType';
+import { ExpenseType } from '../../models/expenseType.model';
+import { ExpenseTypeActions, ExpenseTypeActionTypes } from './../actions/expenseType';
 
-export interface State extends EntityState<SavingType> {
-    selectedSavingTypeId: number;
+export interface State extends EntityState<ExpenseType> {
+    selectedExpenseTypeId: number;
     loading: boolean;
     errorMessage: string;
 }
 
-export const adapter: EntityAdapter<SavingType> = createEntityAdapter<SavingType>({
-    selectId: (savingType: SavingType) => savingType.id,
+export const adapter: EntityAdapter<ExpenseType> = createEntityAdapter<ExpenseType>({
+    selectId: (expenseType: ExpenseType) => expenseType.id,
     sortComparer: false
 });
 
 export const initialState: State = adapter.getInitialState({
-    selectedSavingTypeId: null,
+    selectedExpenseTypeId: null,
     loading: false,
     errorMessage: ''
 });
 
 export function reducer(
     state = initialState,
-    action: SavingTypeActions
+    action: ExpenseTypeActions
 ): State {
     switch (action.type) {
 
-        case SavingTypeActionTypes.AddSavingType:
-        case SavingTypeActionTypes.UpdateSavingType:
-        case SavingTypeActionTypes.RemoveSavingType:
-        case SavingTypeActionTypes.LoadSavingTypes:
+        case ExpenseTypeActionTypes.AddExpenseType:
+        case ExpenseTypeActionTypes.UpdateExpenseType:
+        case ExpenseTypeActionTypes.RemoveExpenseType:
+        case ExpenseTypeActionTypes.LoadExpenseTypes:
             return {
                 ...state,
                 errorMessage: '',
                 loading: true
             };
 
-        case SavingTypeActionTypes.AddSavingTypeFail:
-        case SavingTypeActionTypes.LoadSavingTypesFail:
-        case SavingTypeActionTypes.RemoveSavingTypeFail:
-        case SavingTypeActionTypes.UpdateSavingTypeFail:
+        case ExpenseTypeActionTypes.AddExpenseTypeFail:
+        case ExpenseTypeActionTypes.LoadExpenseTypesFail:
+        case ExpenseTypeActionTypes.RemoveExpenseTypeFail:
+        case ExpenseTypeActionTypes.UpdateExpenseTypeFail:
             return {
                 ...state,
                 errorMessage: action.payload,
                 loading: false
             };
 
-        case SavingTypeActionTypes.AddSavingTypeSuccess:
+        case ExpenseTypeActionTypes.AddExpenseTypeSuccess:
             return adapter.addOne(action.payload, {
                 ...state,
                 loading: false
             });
 
-        case SavingTypeActionTypes.UpdateSavingTypeSuccess:
+        case ExpenseTypeActionTypes.UpdateExpenseTypeSuccess:
             return adapter.updateOne({
                     id: action.payload.id,
                     changes: action.payload
@@ -63,23 +63,23 @@ export function reducer(
                 }
             );
 
-        case SavingTypeActionTypes.RemoveSavingTypeSuccess:
+        case ExpenseTypeActionTypes.RemoveExpenseTypeSuccess:
             return adapter.removeOne(action.payload, {
                 ...state,
                 loading: false
             });
 
-        case SavingTypeActionTypes.LoadSavingTypesSuccess:
+        case ExpenseTypeActionTypes.LoadExpenseTypesSuccess:
             return adapter.addMany(action.payload, {
                 ...state,
                 loading: false
             });
 
-        case SavingTypeActionTypes.SelectSavingType:
+        case ExpenseTypeActionTypes.SelectExpenseType:
             return {
                 ...state,
                 errorMessage: '',
-                selectedSavingTypeId: action.payload
+                selectedExpenseTypeId: action.payload
             };
 
         default: {
@@ -91,4 +91,4 @@ export function reducer(
 
 export const getLoading = (state: State) => state.loading;
 export const getErrorMessage = (state: State) => state.errorMessage;
-export const getSelectedId = (state: State) => state.selectedSavingTypeId;
+export const getSelectedId = (state: State) => state.selectedExpenseTypeId;

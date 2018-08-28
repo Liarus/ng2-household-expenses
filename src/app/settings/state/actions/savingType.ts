@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 
-import { CreateSavingType } from '../models/requests/createSavingType.model';
-import { SavingType } from '../models/savingType.model';
-import { ModifySavingType } from '../models/requests/modifySavingType.model';
-import { DeleteSavingType } from '../models/requests/deleteSavingType.model';
+import { CreateSavingType } from '../../models/requests/createSavingType.model';
+import { SavingType } from '../../models/savingType.model';
+import { ModifySavingType } from '../../models/requests/modifySavingType.model';
+import { DeleteSavingType } from '../../models/requests/deleteSavingType.model';
 
 export enum SavingTypeActionTypes {
     AddSavingType = '[SavingType] Add Saving Type',

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
@@ -7,11 +6,11 @@ import { StoreModule } from '@ngrx/store';
 
 import { PrimeNgModule } from '../primeNg/primeNg.module';
 import { routing } from './settings.routing';
-import { ExpenseTypeEffects } from './effects/expenseType';
-import { SavingTypeEffects } from './effects/savingType';
+import { ExpenseTypeEffects } from './state/effects/expenseType';
+import { SavingTypeEffects } from './state/effects/savingType';
 import { ExpenseTypeService } from './services/expenseType.service';
 import { SavingTypeService } from './services/savingType.service';
-import { reducers } from './reducers';
+import { reducers } from './state/reducers';
 
 import {
     SettingsPageComponent,

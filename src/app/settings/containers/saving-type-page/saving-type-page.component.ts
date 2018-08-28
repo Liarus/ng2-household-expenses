@@ -3,8 +3,8 @@ import { take } from 'rxjs/operators';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
-import * as fromSettings from '../../reducers';
-import * as savingType from '../../actions/savingType';
+import * as fromSettings from '../../state/reducers';
+import * as savingType from '../../state/actions/savingType';
 import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
 import { SavingType } from './../../models/savingType.model';
