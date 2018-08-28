@@ -10,7 +10,7 @@ import * as pages from '../../../core/state/actions/pages';
 import { Household } from '../../models/household.model';
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
-import { State } from '../../../reducers';
+import { State } from '../../../state/reducers';
 import { HouseholdModalNames } from '../../definitions/householdModalNames.const';
 import { DeleteHousehold } from '../../models/requests/deleteHousehold.model';
 

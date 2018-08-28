@@ -8,7 +8,7 @@ import * as savingType from '../../actions/savingType';
 import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
 import { SavingType } from './../../models/savingType.model';
-import { State } from '../../../reducers';
+import { State } from '../../../state/reducers';
 import { CreateSavingType } from '../../models/requests/createSavingType.model';
 import { SavingTypeModalNames } from '../../definitions/savingTypeModalNames.const';
 import { DeleteSavingType } from './../../models/requests/deleteSavingType.model';

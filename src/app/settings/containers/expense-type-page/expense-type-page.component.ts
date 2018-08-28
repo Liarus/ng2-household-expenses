@@ -7,7 +7,7 @@ import * as fromSettings from '../../reducers';
 import * as expenseType from '../../actions/expenseType';
 import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
-import { State } from '../../../reducers';
+import { State } from '../../../state/reducers';
 import { ExpenseTypeModalNames } from '../../definitions/expenseTypeModalNames.const';
 import { DeleteExpenseType } from './../../models/requests/deleteExpenseType.model';
 import { ModifyExpenseType } from './../../models/requests/modifyExpenseType.model';

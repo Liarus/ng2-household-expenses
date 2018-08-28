@@ -6,7 +6,7 @@ import { Permission } from './../../models/permission.model';
 import * as fromUser from '../../reducers';
 import * as permission from '../../actions/permission';
 import * as fromCore from '../../../core/state/reducers';
-import { State } from '../../../reducers';
+import { State } from '../../../state/reducers';
 
 @Component({
   selector: 'app-permission-page',

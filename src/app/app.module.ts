@@ -13,7 +13,7 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { routing } from './app.routing';
 import { AppComponent } from './core/containers';
 import { CoreModule } from './core/core.module';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './state/reducers';
 import { PagesEffects } from './core/state/effects/pages';
 
 import { environment } from '../environments/environment';

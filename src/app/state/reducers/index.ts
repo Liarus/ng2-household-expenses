@@ -8,8 +8,8 @@ import {
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import * as fromRouter from '@ngrx/router-store';
-import { environment } from '../../environments/environment';
-import { RouterStateUrl } from './../shared/states/routerState';
+import { environment } from '../../../environments/environment';
+import { RouterStateUrl } from './../../shared/states/routerState';
 
 export interface State {
     router: fromRouter.RouterReducerState<RouterStateUrl>;

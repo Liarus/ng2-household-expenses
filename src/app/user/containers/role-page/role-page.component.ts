@@ -7,7 +7,7 @@ import * as fromUser from '../../reducers';
 import * as role from '../../actions/role';
 import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
-import { State } from '../../../reducers';
+import { State } from '../../../state/reducers';
 import { RoleModalNames } from '../../definitions/roleModalNames';
 import { ModifyRole } from './../../models/requests/modifyRole.model';
 import { CreateRole } from './../../models/requests/createRole.model';

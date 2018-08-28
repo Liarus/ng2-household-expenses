@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import * as fromUser from '../../reducers';
 import * as credentialType from '../../actions/credentialType';
 import * as fromCore from '../../../core/state/reducers';
-import { State } from '../../../reducers';
+import { State } from '../../../state/reducers';
 import { CredentialType } from '../../models/credentialType.model';
 
 @Component({

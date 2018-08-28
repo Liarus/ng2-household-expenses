@@ -2,7 +2,7 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 
 import * as fromSavingTypes from './savingType';
 import * as fromExpenseTypes from './expenseType';
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../state/reducers';
 
 export interface SettingState {
     savingTypes: fromSavingTypes.State;
