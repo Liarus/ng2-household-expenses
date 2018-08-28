@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { Household } from '../models/household.model';
+import { Household } from '../../models/household.model';
 import { HouseholdActions, HouseholdActionTypes } from './../actions/household';
 
 export interface State extends EntityState<Household> {

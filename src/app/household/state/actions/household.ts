@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 
-import { Household } from './../models/household.model';
-import { CreateHousehold } from './../models/requests/createHousehold.model';
-import { ModifyHousehold } from './../models/requests/modifyHousehold.model';
-import { DeleteHousehold } from './../models/requests/deleteHousehold.model';
+import { Household } from './../../models/household.model';
+import { CreateHousehold } from './../../models/requests/createHousehold.model';
+import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
+import { DeleteHousehold } from './../../models/requests/deleteHousehold.model';
 
 export enum HouseholdActionTypes {
     AddHousehold = '[Household] Add Household',

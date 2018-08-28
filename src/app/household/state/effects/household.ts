@@ -3,7 +3,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 
-import { HouseholdService } from './../services/household.service';
+import { HouseholdService } from './../../services/household.service';
 import {
     HouseholdActionTypes,
     AddHousehold,
@@ -19,10 +19,10 @@ import {
     RemoveHouseholdSuccess,
     RemoveHouseholdFail
 } from '../actions/household';
-import { CreateHousehold } from '../models/requests/createHousehold.model';
-import { ModifyHousehold } from './../models/requests/modifyHousehold.model';
-import { DeleteHousehold } from './../models/requests/deleteHousehold.model';
-import { Household } from './../models/household.model';
+import { CreateHousehold } from '../../models/requests/createHousehold.model';
+import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
+import { DeleteHousehold } from './../../models/requests/deleteHousehold.model';
+import { Household } from './../../models/household.model';
 
 @Injectable()
 export class HouseholdEffects {

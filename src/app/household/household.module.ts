@@ -5,8 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './reducers';
-import { HouseholdEffects } from './effects/household';
+import { reducers } from './state/reducers';
+import { HouseholdEffects } from './state/effects/household';
 import { HouseholdService } from './services/household.service';
 import { routing } from './household.routing';
 import { PrimeNgModule } from '../primeNg/primeNg.module';

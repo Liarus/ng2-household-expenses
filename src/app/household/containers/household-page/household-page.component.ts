@@ -3,8 +3,8 @@ import { take } from 'rxjs/operators';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
-import * as fromHouseholds from '../../reducers';
-import * as household from '../../actions/household';
+import * as fromHouseholds from '../../state/reducers';
+import * as household from '../../state/actions/household';
 import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
 import { Household } from '../../models/household.model';

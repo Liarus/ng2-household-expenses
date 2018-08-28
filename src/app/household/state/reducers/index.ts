@@ -1,7 +1,7 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromHouseholds from './household';
-import * as fromRoot from '../../state/reducers';
+import * as fromRoot from '../../../state/reducers';
 
 export interface HouseholdState {
     households: fromHouseholds.State;
