@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
-import { CreateCredentialType } from '../models/requests/createCredentialType.model';
-import { CredentialType } from '../models/credentialType.model';
-import { ModifyCredentialType } from '../models/requests/modifyCredentialType.model';
+import { CreateCredentialType } from '../../models/requests/createCredentialType.model';
+import { CredentialType } from '../../models/credentialType.model';
+import { ModifyCredentialType } from '../../models/requests/modifyCredentialType.model';
 
 export enum CredentialTypeActionTypes {
     AddCredentialType = '[CredentialType] Add Credential Type',

@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import * as fromUser from '../../reducers';
-import * as status from '../../actions/status';
-import { State } from '../../../state/reducers';
+import * as fromUser from '../../state/reducers';
+import * as status from '../../state/actions/status';
 
 @Component({
   selector: 'app-user-page',

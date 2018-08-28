@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
-import * as fromUser from '../../reducers';
-import * as credentialType from '../../actions/credentialType';
+import * as fromUser from '../../state/reducers';
+import * as credentialType from '../../state/actions/credentialType';
 import * as fromCore from '../../../core/state/reducers';
 import { State } from '../../../state/reducers';
 import { CredentialType } from '../../models/credentialType.model';

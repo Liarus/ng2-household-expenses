@@ -4,7 +4,7 @@ import * as fromCredentialTypes from './credentialType';
 import * as fromPermissions from './permission';
 import * as fromStatus from './status';
 import * as fromRoles from './role';
-import * as fromRoot from '../../state/reducers';
+import * as fromRoot from '../../../state/reducers';
 
 export interface UserState {
     credentialTypes: fromCredentialTypes.State;

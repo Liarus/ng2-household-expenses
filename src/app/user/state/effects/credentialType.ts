@@ -18,10 +18,10 @@ import {
     RemoveCredentialTypeSuccess,
     RemoveCredentialTypeFail
 } from '../actions/credentialType';
-import { CredentialType } from './../models/credentialType.model';
-import { ModifyCredentialType } from './../models/requests/modifyCredentialType.model';
-import { CredentialTypeService } from './../services/credentialType.service';
-import { CreateCredentialType } from './../models/requests/createCredentialType.model';
+import { CredentialType } from './../../models/credentialType.model';
+import { ModifyCredentialType } from './../../models/requests/modifyCredentialType.model';
+import { CredentialTypeService } from './../../services/credentialType.service';
+import { CreateCredentialType } from './../../models/requests/createCredentialType.model';
 
 @Injectable()
 export class CredentialTypeEffects {

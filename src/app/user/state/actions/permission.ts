@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
-import { CreatePermission } from '../models/requests/createPermission.model';
-import { Permission } from '../models/permission.model';
-import { ModifyPermission } from '../models/requests/modifyPermission.model';
+import { CreatePermission } from '../../models/requests/createPermission.model';
+import { Permission } from '../../models/permission.model';
+import { ModifyPermission } from '../../models/requests/modifyPermission.model';
 
 export enum PermissionActionTypes {
     AddPermission = '[Permission] Add Permission',

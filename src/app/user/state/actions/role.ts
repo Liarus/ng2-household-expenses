@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
-import { CreateRole } from '../models/requests/createRole.model';
-import { Role } from '../models/role.model';
-import { ModifyRole } from '../models/requests/modifyRole.model';
+import { CreateRole } from '../../models/requests/createRole.model';
+import { Role } from '../../models/role.model';
+import { ModifyRole } from '../../models/requests/modifyRole.model';
 
 export enum RoleActionTypes {
     AddRole = '[Role] Add Role',

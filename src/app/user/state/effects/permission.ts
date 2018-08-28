@@ -18,10 +18,10 @@ import {
     RemovePermissionSuccess,
     RemovePermissionFail
 } from '../actions/permission';
-import { Permission } from './../models/permission.model';
-import { ModifyPermission } from './../models/requests/modifyPermission.model';
-import { PermissionService } from './../services/permission.service';
-import { CreatePermission } from './../models/requests/createPermission.model';
+import { Permission } from './../../models/permission.model';
+import { ModifyPermission } from './../../models/requests/modifyPermission.model';
+import { PermissionService } from './../../services/permission.service';
+import { CreatePermission } from './../../models/requests/createPermission.model';
 
 @Injectable()
 export class PermissionEffects {

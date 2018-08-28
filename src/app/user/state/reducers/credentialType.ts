@@ -1,57 +1,57 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { Permission } from './../models/permission.model';
-import { PermissionActions, PermissionActionTypes } from './../actions/permission';
+import { CredentialType } from './../../models/credentialType.model';
+import { CredentialTypeActions, CredentialTypeActionTypes, AddCredentialTypeSuccess } from './../actions/credentialType';
 
-export interface State extends EntityState<Permission> {
-    selectedPermissionId: number;
+export interface State extends EntityState<CredentialType> {
+    selectedCredentialTypeId: number;
     loading: boolean;
     errorMessage: string;
 }
 
-export const adapter: EntityAdapter<Permission> = createEntityAdapter<Permission>({
-    selectId: (permission: Permission) => permission.id,
+export const adapter: EntityAdapter<CredentialType> = createEntityAdapter<CredentialType>({
+    selectId: (credentialType: CredentialType) => credentialType.id,
     sortComparer: false
 });
 
 export const initialState: State = adapter.getInitialState({
-    selectedPermissionId: null,
+    selectedCredentialTypeId: null,
     loading: false,
     errorMessage: ''
 });
 
 export function reducer(
     state = initialState,
-    action: PermissionActions ): State {
+    action: CredentialTypeActions ): State {
     switch (action.type) {
 
-        case PermissionActionTypes.AddPermission:
-        case PermissionActionTypes.UpdatePermission:
-        case PermissionActionTypes.RemovePermission:
-        case PermissionActionTypes.LoadPermissions:
+        case CredentialTypeActionTypes.AddCredentialType:
+        case CredentialTypeActionTypes.UpdateCredentialType:
+        case CredentialTypeActionTypes.RemoveCredentialType:
+        case CredentialTypeActionTypes.LoadCredentialTypes:
             return {
                 ...state,
                 errorMessage: '',
                 loading: true
             };
 
-        case PermissionActionTypes.AddPermissionFail:
-        case PermissionActionTypes.LoadPermissionsFail:
-        case PermissionActionTypes.RemovePermissionFail:
-        case PermissionActionTypes.UpdatePermissionFail:
+        case CredentialTypeActionTypes.AddCredentialTypeFail:
+        case CredentialTypeActionTypes.LoadCredentialTypesFail:
+        case CredentialTypeActionTypes.RemoveCredentialTypeFail:
+        case CredentialTypeActionTypes.UpdateCredentialTypeFail:
             return {
                 ...state,
                 errorMessage: action.payload,
                 loading: false
             };
 
-        case PermissionActionTypes.AddPermissionSuccess:
+        case CredentialTypeActionTypes.AddCredentialTypeSuccess:
             return adapter.addOne(action.payload, {
                 ...state,
                 loading: false
             });
 
-        case PermissionActionTypes.UpdatePermissionSuccess:
+        case CredentialTypeActionTypes.UpdateCredentialTypeSuccess:
             return adapter.updateOne({
                     id: action.payload.id,
                     changes: action.payload
@@ -62,23 +62,23 @@ export function reducer(
                 }
             );
 
-        case PermissionActionTypes.RemovePermissionSuccess:
+        case CredentialTypeActionTypes.RemoveCredentialTypeSuccess:
             return adapter.removeOne(action.payload, {
                 ...state,
                 loading: false
             });
 
-        case PermissionActionTypes.LoadPermissionsSuccess:
+        case CredentialTypeActionTypes.LoadCredentialTypesSuccess:
             return adapter.addMany(action.payload, {
                 ...state,
                 loading: false
             });
 
-        case PermissionActionTypes.SelectPermission:
+        case CredentialTypeActionTypes.SelectCredentialType:
             return {
                 ...state,
                 errorMessage: '',
-                selectedPermissionId: action.payload
+                selectedCredentialTypeId: action.payload
             };
 
         default: {
@@ -89,4 +89,4 @@ export function reducer(
 
 export const getLoading = (state: State) => state.loading;
 export const getErrorMessage = (state: State) => state.errorMessage;
-export const getSelectedId = (state: State) => state.selectedPermissionId;
+export const getSelectedId = (state: State) => state.selectedCredentialTypeId;

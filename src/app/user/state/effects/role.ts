@@ -24,10 +24,10 @@ import {
     UnassignPermissionSuccess,
     UnassignPermissionFail,
 } from '../actions/role';
-import { Role } from './../models/role.model';
-import { ModifyRole } from './../models/requests/modifyRole.model';
-import { RoleService } from './../services/role.service';
-import { CreateRole } from './../models/requests/createRole.model';
+import { Role } from './../../models/role.model';
+import { ModifyRole } from './../../models/requests/modifyRole.model';
+import { RoleService } from './../../services/role.service';
+import { CreateRole } from './../../models/requests/createRole.model';
 
 @Injectable()
 export class RoleEffects {

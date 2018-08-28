@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
 import { Permission } from './../../models/permission.model';
-import * as fromUser from '../../reducers';
-import * as permission from '../../actions/permission';
+import * as fromUser from '../../state/reducers';
+import * as permission from '../../state/actions/permission';
 import * as fromCore from '../../../core/state/reducers';
 import { State } from '../../../state/reducers';
 

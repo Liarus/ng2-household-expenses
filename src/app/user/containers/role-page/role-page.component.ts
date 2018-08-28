@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 
 import { RoleWithPermissions } from '../../models/roleWithPermissions.model';
-import * as fromUser from '../../reducers';
-import * as role from '../../actions/role';
+import * as fromUser from '../../state/reducers';
+import * as role from '../../state/actions/role';
 import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
 import { State } from '../../../state/reducers';

@@ -6,12 +6,12 @@ import { StoreModule } from '@ngrx/store';
 
 import { PrimeNgModule } from '../primeNg/primeNg.module';
 import { routing } from './user.routing';
-import { reducers } from './reducers';
-import { CredentialTypeEffects } from './effects/credentialType';
+import { reducers } from './state/reducers';
+import { CredentialTypeEffects } from './state/effects/credentialType';
 import { CredentialTypeService } from './services/credentialType.service';
-import { PermissionEffects } from './effects/permission';
+import { PermissionEffects } from './state/effects/permission';
 import { PermissionService } from './services/permission.service';
-import { RoleEffects } from './effects/role';
+import { RoleEffects } from './state/effects/role';
 import { RoleService } from './services/role.service';
 
 import {

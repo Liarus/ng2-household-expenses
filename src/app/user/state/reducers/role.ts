@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-import { Role } from './../models/role.model';
+import { Role } from './../../models/role.model';
 import { RoleActions, RoleActionTypes, AssignPermissionSuccess } from './../actions/role';
 
 export interface State extends EntityState<Role> {
