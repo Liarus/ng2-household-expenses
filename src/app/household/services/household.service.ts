@@ -24,13 +24,13 @@ export class HouseholdService {
     }
 
     create(request: CreateHousehold): Observable<any> {
-        return this.httpService.put<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.householdEndpoint}`, request
         );
     }
 
     update(request: ModifyHousehold): Observable<any> {
-        return this.httpService.postModel<any>(
+        return this.httpService.put<any>(
             `${this.appConfig.BASE_URL}${this.householdEndpoint}`, request
         );
     }

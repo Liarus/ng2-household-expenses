@@ -24,13 +24,13 @@ export class SavingTypeService {
     }
 
     create(request: CreateSavingType): Observable<any> {
-        return this.httpService.put<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.savingTypeEndpoint}`, request
         );
     }
 
     update(request: ModifySavingType): Observable<any> {
-        return this.httpService.postModel<any>(
+        return this.httpService.put<any>(
             `${this.appConfig.BASE_URL}${this.savingTypeEndpoint}`, request
         );
     }

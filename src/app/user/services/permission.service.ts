@@ -21,13 +21,13 @@ export class PermissionService {
     }
 
     create(request: CreatePermission): Observable<any> {
-        return this.httpService.put<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.permissionEndpoint}`, request
         );
     }
 
     update(request: ModifyPermission): Observable<any> {
-        return this.httpService.postModel<any>(
+        return this.httpService.put<any>(
             `${this.appConfig.BASE_URL}${this.permissionEndpoint}`, request
         );
     }

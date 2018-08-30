@@ -21,13 +21,13 @@ export class RoleService {
     }
 
     create(request: CreateRole): Observable<any> {
-        return this.httpService.put<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.RoleEndpoint}`, request
         );
     }
 
     update(request: ModifyRole): Observable<any> {
-        return this.httpService.postModel<any>(
+        return this.httpService.put<any>(
             `${this.appConfig.BASE_URL}${this.RoleEndpoint}`, request
         );
     }

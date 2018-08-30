@@ -24,13 +24,13 @@ export class ExpenseTypeService {
     }
 
     create(request: CreateExpenseType): Observable<any> {
-        return this.httpService.put<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.expenseTypeEndpoint}`, request
         );
     }
 
     update(request: ModifyExpenseType): Observable<any> {
-        return this.httpService.postModel<any>(
+        return this.httpService.put<any>(
             `${this.appConfig.BASE_URL}${this.expenseTypeEndpoint}`, request
         );
     }

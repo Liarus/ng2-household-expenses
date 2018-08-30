@@ -20,13 +20,13 @@ export class CredentialTypeService {
     }
 
     create(request: CreateCredentialType): Observable<any> {
-        return this.httpService.put<any>(
+        return this.httpService.postModel<any>(
             `${this.appConfig.BASE_URL}${this.credentialTypeEndpoint}`, request
         );
     }
 
     update(request: ModifyCredentialType): Observable<any> {
-        return this.httpService.postModel<any>(
+        return this.httpService.put<any>(
             `${this.appConfig.BASE_URL}${this.credentialTypeEndpoint}`, request
         );
     }
