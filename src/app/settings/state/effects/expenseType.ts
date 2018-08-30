@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
+import { ToastrService } from 'ngx-toastr';
 
 import { ExpenseTypeService } from './../../services/expenseType.service';
 import {
@@ -22,6 +23,7 @@ import {
 import { CreateExpenseType } from '../../models/requests/createExpenseType.model';
 import { ModifyExpenseType } from './../../models/requests/modifyExpenseType.model';
 import { ExpenseType } from './../../models/expenseType.model';
+import { HttpError } from '../../../shared/classes/httpError';
 
 @Injectable()
 export class ExpenseTypeEffects {
@@ -41,7 +43,7 @@ export class ExpenseTypeEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddExpenseTypeFail({errorMessage: error})))
+                catchError(error => of(new AddExpenseTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -61,7 +63,7 @@ export class ExpenseTypeEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateExpenseTypeFail({errorMessage: error})))
+                catchError(error => of(new UpdateExpenseTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -74,7 +76,7 @@ export class ExpenseTypeEffects {
             this.expenseTypeService.delete(expenseTypeId)
             .pipe(
                 map(response => new RemoveExpenseTypeSuccess({expenseTypeId: expenseTypeId})),
-                catchError(error => of(new RemoveExpenseTypeFail({errorMessage: error})))
+                catchError(error => of(new RemoveExpenseTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -87,12 +89,23 @@ export class ExpenseTypeEffects {
             this.expenseTypeService.getAllForUser(userId)
             .pipe(
                 map((response: ExpenseType[]) => new LoadExpenseTypesSuccess(response)),
-                catchError(error => of(new LoadExpenseTypesFail({errorMessage: error})))
+                catchError(error => of(new LoadExpenseTypesFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
 
+    @Effect({dispatch: false})
+    errorMessages = this.actions.pipe(
+        ofType(ExpenseTypeActionTypes.AddExpenseTypeFail,
+            ExpenseTypeActionTypes.LoadExpenseTypesFail,
+            ExpenseTypeActionTypes.RemoveExpenseTypeFail,
+            ExpenseTypeActionTypes.UpdateExpenseTypeFail),
+        map((action: any) => action.payload.errorMessage),
+        tap(error => this.toastr.error(error, 'Alert!'))
+    );
+
     constructor(private actions: Actions,
-                private expenseTypeService: ExpenseTypeService) {
+                private expenseTypeService: ExpenseTypeService,
+                private toastr: ToastrService) {
     }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
+import { ToastrService } from 'ngx-toastr';
 
 import { SavingTypeService } from './../../services/savingType.service';
 import {
@@ -22,6 +23,7 @@ import {
 import { CreateSavingType } from './../../models/requests/createSavingType.model';
 import { ModifySavingType } from './../../models/requests/modifySavingType.model';
 import { SavingType } from './../../models/savingType.model';
+import { HttpError } from '../../../shared/classes/httpError';
 
 @Injectable()
 export class SavingTypeEffects {
@@ -41,7 +43,7 @@ export class SavingTypeEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddSavingTypeFail({errorMessage: error})))
+                catchError(error => of(new AddSavingTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -61,7 +63,7 @@ export class SavingTypeEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateSavingTypeFail({errorMessage: error})))
+                catchError(error => of(new UpdateSavingTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -74,7 +76,7 @@ export class SavingTypeEffects {
             this.savingTypeService.delete(savingTypeId)
             .pipe(
                 map(response => new RemoveSavingTypeSuccess({savingTypeId: savingTypeId})),
-                catchError(error => of(new RemoveSavingTypeFail({errorMessage: error})))
+                catchError(error => of(new RemoveSavingTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -87,12 +89,23 @@ export class SavingTypeEffects {
             this.savingTypeService.getAllForUser(userId)
             .pipe(
                 map((response: SavingType[]) => new LoadSavingTypesSuccess(response)),
-                catchError(error => of(new LoadSavingTypesFail({errorMessage: error})))
+                catchError(error => of(new LoadSavingTypesFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
 
+    @Effect({dispatch: false})
+    errorMessages = this.actions.pipe(
+        ofType(SavingTypeActionTypes.AddSavingTypeFail,
+            SavingTypeActionTypes.LoadSavingTypesFail,
+            SavingTypeActionTypes.RemoveSavingTypeFail,
+            SavingTypeActionTypes.UpdateSavingTypeFail),
+        map((action: any) => action.payload.errorMessage),
+        tap(error => this.toastr.error(error, 'Alert!'))
+    );
+
     constructor(private actions: Actions,
-                private savingTypeService: SavingTypeService) {
+                private savingTypeService: SavingTypeService,
+                private toastr: ToastrService) {
     }
 }

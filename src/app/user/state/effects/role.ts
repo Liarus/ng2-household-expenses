@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
+import { ToastrService } from 'ngx-toastr';
 
 import {
     RoleActionTypes,
@@ -123,7 +124,20 @@ export class RoleEffects {
         )
     );
 
+    @Effect({dispatch: false})
+    errorMessages = this.actions.pipe(
+        ofType(RoleActionTypes.AddRoleFail,
+            RoleActionTypes.AssignPermissionFail,
+            RoleActionTypes.LoadRolesFail,
+            RoleActionTypes.RemoveRoleFail,
+            RoleActionTypes.UnassignPermissionFail,
+            RoleActionTypes.UpdateRoleFail),
+        map((action: any) => action.payload.errorMessage),
+        tap(error => this.toastr.error(error, 'Alert!'))
+    );
+
     constructor(private actions: Actions,
-                private roleService: RoleService) {
+                private roleService: RoleService,
+                private toastr: ToastrService) {
     }
 }

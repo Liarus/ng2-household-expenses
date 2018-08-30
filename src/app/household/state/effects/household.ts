@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
+import { ToastrService } from 'ngx-toastr';
 
 import { HouseholdService } from './../../services/household.service';
 import {
@@ -22,6 +23,7 @@ import {
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
 import { Household } from './../../models/household.model';
+import { HttpError } from '../../../shared/classes/httpError';
 
 @Injectable()
 export class HouseholdEffects {
@@ -46,7 +48,7 @@ export class HouseholdEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddHouseholdFail({errorMessage: error})))
+                catchError(error => of(new AddHouseholdFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -71,7 +73,7 @@ export class HouseholdEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateHouseholdFail({errorMessage: error})))
+                catchError(error => of(new UpdateHouseholdFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -84,7 +86,7 @@ export class HouseholdEffects {
             this.householdService.delete(householdId)
             .pipe(
                 map(response => new RemoveHouseholdSuccess({householdId: householdId})),
-                catchError(error => of(new RemoveHouseholdFail({errorMessage: error})))
+                catchError(error => of(new RemoveHouseholdFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -97,12 +99,23 @@ export class HouseholdEffects {
             this.householdService.getAllForUser(userId)
             .pipe(
                 map((response: Household[]) => new LoadHouseholdsSuccess(response)),
-                catchError(error => of(new LoadHouseholdsFail({errorMessage: error})))
+                catchError(error => of(new LoadHouseholdsFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
 
+    @Effect({dispatch: false})
+    errorMessages = this.actions.pipe(
+        ofType(HouseholdActionTypes.AddHouseholdFail,
+            HouseholdActionTypes.LoadHouseholdsFail,
+            HouseholdActionTypes.RemoveHouseholdFail,
+            HouseholdActionTypes.UpdateHouseholdFail),
+        map((action: any) => action.payload.errorMessage),
+        tap(error => this.toastr.error(error, 'Alert!'))
+    );
+
     constructor(private actions: Actions,
-                private householdService: HouseholdService) {
+                private householdService: HouseholdService,
+                private toastr: ToastrService) {
     }
 }

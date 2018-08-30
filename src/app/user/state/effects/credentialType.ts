@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
+import { ToastrService } from 'ngx-toastr';
 
 import {
     CredentialTypeActionTypes,
@@ -22,6 +23,7 @@ import { CredentialType } from './../../models/credentialType.model';
 import { ModifyCredentialType } from './../../models/requests/modifyCredentialType.model';
 import { CredentialTypeService } from './../../services/credentialType.service';
 import { CreateCredentialType } from './../../models/requests/createCredentialType.model';
+import { HttpError } from '../../../shared/classes/httpError';
 
 @Injectable()
 export class CredentialTypeEffects {
@@ -41,7 +43,7 @@ export class CredentialTypeEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddCredentialTypeFail({errorMessage: error})))
+                catchError(error => of(new AddCredentialTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -61,7 +63,7 @@ export class CredentialTypeEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateCredentialTypeFail({errorMessage: error})))
+                catchError(error => of(new UpdateCredentialTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -74,7 +76,7 @@ export class CredentialTypeEffects {
             this.credentialTypeService.delete(credentialTypeId)
             .pipe(
                 map(response => new RemoveCredentialTypeSuccess({credentialTypeId: credentialTypeId})),
-                catchError(error => of(new RemoveCredentialTypeFail({errorMessage: error})))
+                catchError(error => of(new RemoveCredentialTypeFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
@@ -86,12 +88,23 @@ export class CredentialTypeEffects {
             this.credentialTypeService.getAll()
             .pipe(
                 map((response: CredentialType[]) => new LoadCredentialTypesSuccess(response)),
-                catchError(error => of(new LoadCredentialTypesFail({errorMessage: error})))
+                catchError(error => of(new LoadCredentialTypesFail({errorMessage: HttpError.parse(error)})))
             )
         )
     );
 
+    @Effect({dispatch: false})
+    errorMessages = this.actions.pipe(
+        ofType(CredentialTypeActionTypes.AddCredentialTypeFail,
+            CredentialTypeActionTypes.LoadCredentialTypesFail,
+            CredentialTypeActionTypes.RemoveCredentialTypeFail,
+            CredentialTypeActionTypes.UpdateCredentialTypeFail),
+        map((action: any) => action.payload.errorMessage),
+        tap(error => this.toastr.error(error, 'Alert!'))
+    );
+
     constructor(private actions: Actions,
-                private credentialTypeService: CredentialTypeService) {
+                private credentialTypeService: CredentialTypeService,
+                private toastr: ToastrService) {
     }
 }

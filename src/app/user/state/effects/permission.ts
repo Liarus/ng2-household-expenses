@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
+import { ToastrService } from 'ngx-toastr';
 
 import {
     PermissionActionTypes,
@@ -91,7 +92,18 @@ export class PermissionEffects {
         )
     );
 
+    @Effect({dispatch: false})
+    errorMessages = this.actions.pipe(
+        ofType(PermissionActionTypes.AddPermissionFail,
+            PermissionActionTypes.LoadPermissionsFail,
+            PermissionActionTypes.RemovePermissionFail,
+            PermissionActionTypes.UpdatePermissionFail),
+        map((action: any) => action.payload.errorMessage),
+        tap(error => this.toastr.error(error, 'Alert!'))
+    );
+
     constructor(private actions: Actions,
-                private permissionService: PermissionService) {
+                private permissionService: PermissionService,
+                private toastr: ToastrService) {
     }
 }
