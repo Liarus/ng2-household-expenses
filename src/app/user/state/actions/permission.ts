@@ -6,18 +6,18 @@ import { ModifyPermission } from '../../models/requests/modifyPermission.model';
 
 export enum PermissionActionTypes {
     AddPermission = '[Permission] Add Permission',
-    AddPermissionSuccess = '[Permission] Add Permission Success',
-    AddPermissionFail = '[Permission] Add Permission Fail',
+    AddPermissionSuccess = '[Permission API] Add Permission Success',
+    AddPermissionFail = '[Permission API] Add Permission Fail',
     UpdatePermission = '[Permission] Update Permission',
-    UpdatePermissionSuccess = '[Permission] Update Permission Success',
-    UpdatePermissionFail = '[Permission] Update Permission Fail',
+    UpdatePermissionSuccess = '[Permission API] Update Permission Success',
+    UpdatePermissionFail = '[Permission API] Update Permission Fail',
     RemovePermission = '[Permission] Remove Permission',
-    RemovePermissionSuccess = '[Permission] Remove Permission Success',
-    RemovePermissionFail = '[Permission] Remove Permission Fail',
+    RemovePermissionSuccess = '[Permission API] Remove Permission Success',
+    RemovePermissionFail = '[Permission API] Remove Permission Fail',
     SelectPermission = '[Permission] Select Permission',
     LoadPermissions = '[Permission] Load Permission',
-    LoadPermissionsSuccess = '[Permission] Load Permission Success',
-    LoadPermissionsFail = '[Permission] Load Permission Fail'
+    LoadPermissionsSuccess = '[Permission API] Load Permission Success',
+    LoadPermissionsFail = '[Permission API] Load Permission Fail'
 }
 
 export class AddPermission implements Action {
@@ -37,7 +37,7 @@ export class AddPermissionSuccess implements Action {
 export class AddPermissionFail implements Action {
     readonly type = PermissionActionTypes.AddPermissionFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
@@ -51,7 +51,7 @@ export class UpdatePermission implements Action {
 export class UpdatePermissionFail implements Action {
     readonly type = PermissionActionTypes.UpdatePermissionFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
@@ -65,28 +65,28 @@ export class UpdatePermissionSuccess implements Action {
 export class RemovePermission implements Action {
     readonly type = PermissionActionTypes.RemovePermission;
 
-    constructor(public payload: number) {
+    constructor(public payload: {permissionId: number}) {
     }
 }
 
 export class RemovePermissionSuccess implements Action {
     readonly type = PermissionActionTypes.RemovePermissionSuccess;
 
-    constructor(public payload: number) {
+    constructor(public payload: {permissionId: number}) {
     }
 }
 
 export class RemovePermissionFail implements Action {
     readonly type = PermissionActionTypes.RemovePermissionFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
 export class SelectPermission implements Action {
     readonly type = PermissionActionTypes.SelectPermission;
 
-    constructor(public payload: number) {
+    constructor(public payload: {permissionId: number}) {
     }
 }
 
@@ -104,7 +104,7 @@ export class LoadPermissionsSuccess implements Action {
 export class LoadPermissionsFail implements Action {
     readonly type = PermissionActionTypes.LoadPermissionsFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 

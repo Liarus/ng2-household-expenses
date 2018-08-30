@@ -41,7 +41,7 @@ export function reducer(
         case CredentialTypeActionTypes.UpdateCredentialTypeFail:
             return {
                 ...state,
-                errorMessage: action.payload,
+                errorMessage: action.payload.errorMessage,
                 loading: false
             };
 
@@ -63,7 +63,7 @@ export function reducer(
             );
 
         case CredentialTypeActionTypes.RemoveCredentialTypeSuccess:
-            return adapter.removeOne(action.payload, {
+            return adapter.removeOne(action.payload.credentialTypeId, {
                 ...state,
                 loading: false
             });
@@ -78,7 +78,7 @@ export function reducer(
             return {
                 ...state,
                 errorMessage: '',
-                selectedCredentialTypeId: action.payload
+                selectedCredentialTypeId: action.payload.credentialTypeId
             };
 
         default: {

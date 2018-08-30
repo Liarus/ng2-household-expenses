@@ -21,7 +21,6 @@ import {
 } from '../actions/savingType';
 import { CreateSavingType } from './../../models/requests/createSavingType.model';
 import { ModifySavingType } from './../../models/requests/modifySavingType.model';
-import { DeleteSavingType } from './../../models/requests/deleteSavingType.model';
 import { SavingType } from './../../models/savingType.model';
 
 @Injectable()
@@ -42,7 +41,7 @@ export class SavingTypeEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddSavingTypeFail(error)))
+                catchError(error => of(new AddSavingTypeFail({errorMessage: error})))
             )
         )
     );
@@ -62,7 +61,7 @@ export class SavingTypeEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateSavingTypeFail(error)))
+                catchError(error => of(new UpdateSavingTypeFail({errorMessage: error})))
             )
         )
     );
@@ -70,12 +69,12 @@ export class SavingTypeEffects {
     @Effect()
     deleteSavingType = this.actions.pipe(
         ofType(SavingTypeActionTypes.RemoveSavingType),
-        map((action: RemoveSavingType) => action.payload),
-        switchMap((request: DeleteSavingType) =>
-            this.savingTypeService.delete(request)
+        map((action: RemoveSavingType) => action.payload.savingTypeId),
+        switchMap((savingTypeId: number) =>
+            this.savingTypeService.delete(savingTypeId)
             .pipe(
-                map(response => new RemoveSavingTypeSuccess(request.id)),
-                catchError(error => of(new RemoveSavingTypeFail(error)))
+                map(response => new RemoveSavingTypeSuccess({savingTypeId: savingTypeId})),
+                catchError(error => of(new RemoveSavingTypeFail({errorMessage: error})))
             )
         )
     );
@@ -83,12 +82,12 @@ export class SavingTypeEffects {
     @Effect()
     loadSavingTypes = this.actions.pipe(
         ofType(SavingTypeActionTypes.LoadSavingTypes),
-        map((action: LoadSavingTypes) => action.payload),
+        map((action: LoadSavingTypes) => action.payload.userId),
         switchMap((userId: number) =>
             this.savingTypeService.getAllForUser(userId)
             .pipe(
                 map((response: SavingType[]) => new LoadSavingTypesSuccess(response)),
-                catchError(error => of(new LoadSavingTypesFail(error)))
+                catchError(error => of(new LoadSavingTypesFail({errorMessage: error})))
             )
         )
     );

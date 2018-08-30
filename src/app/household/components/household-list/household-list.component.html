@@ -26,7 +26,7 @@
     <tr>
       <td>
         <button type="button" pButton icon="fa-pencil" (click)="edit.emit(rowData['id'])"></button>
-        <button type="button" pButton icon="fa-trash" (click)="delete.emit({id: rowData['id']})"></button>
+        <button type="button" pButton icon="fa-trash" (click)="delete.emit(rowData['id'])"></button>
       </td>
       <td *ngFor="let col of columns" [class]="col.className">
         <span class="ui-column-title">{{col.header}}</span>

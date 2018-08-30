@@ -41,7 +41,7 @@ export function reducer(
         case PagesActionTypes.OpenModal:
             return {
                 ...state,
-                openedModalName: action.payload
+                openedModalName: action.payload.modalName
             };
 
         case PagesActionTypes.CloseModal:
@@ -51,8 +51,8 @@ export function reducer(
             };
 
         case PagesActionTypes.ResizeWindow: {
-            const height: number = action.payload['height'];
-            const width: number = action.payload['width'];
+            const height: number = action.payload.height;
+            const width: number = action.payload.width;
             const isMobile: boolean = width < 768 ? true : false;
             const expanded: boolean = isMobile ? false : state.isSidebarExpanded;
             return {

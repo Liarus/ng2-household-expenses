@@ -41,7 +41,7 @@ export function reducer(
         case PermissionActionTypes.UpdatePermissionFail:
             return {
                 ...state,
-                errorMessage: action.payload,
+                errorMessage: action.payload.errorMessage,
                 loading: false
             };
 
@@ -63,7 +63,7 @@ export function reducer(
             );
 
         case PermissionActionTypes.RemovePermissionSuccess:
-            return adapter.removeOne(action.payload, {
+            return adapter.removeOne(action.payload.permissionId, {
                 ...state,
                 loading: false
             });
@@ -78,7 +78,7 @@ export function reducer(
             return {
                 ...state,
                 errorMessage: '',
-                selectedPermissionId: action.payload
+                selectedPermissionId: action.payload.permissionId
             };
 
         default: {

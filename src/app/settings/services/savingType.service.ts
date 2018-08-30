@@ -6,7 +6,6 @@ import { SavingType } from '../models/savingType.model';
 import { AppConfig } from '../../shared/models/appConfig.model';
 import { CreateSavingType } from './../models/requests/createSavingType.model';
 import { ModifySavingType } from './../models/requests/modifySavingType.model';
-import { DeleteSavingType } from './../models/requests/deleteSavingType.model';
 
 @Injectable()
 export class SavingTypeService {
@@ -36,9 +35,9 @@ export class SavingTypeService {
         );
     }
 
-    delete(request: DeleteSavingType): Observable<any> {
+    delete(id: number): Observable<any> {
         return this.httpService.delete(
-            `${this.appConfig.BASE_URL}${this.savingTypeEndpoint}/${request.id}`
+            `${this.appConfig.BASE_URL}${this.savingTypeEndpoint}/${id}`
         );
     }
 }

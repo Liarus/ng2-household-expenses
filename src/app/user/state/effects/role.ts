@@ -48,7 +48,7 @@ export class RoleEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddRoleFail(error)))
+                catchError(error => of(new AddRoleFail({errorMessage: error})))
             )
         )
     );
@@ -69,7 +69,7 @@ export class RoleEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateRoleFail(error)))
+                catchError(error => of(new UpdateRoleFail({errorMessage: error})))
             )
         )
     );
@@ -77,12 +77,12 @@ export class RoleEffects {
     @Effect()
     deleteRole = this.actions.pipe(
         ofType(RoleActionTypes.RemoveRole),
-        map((action: RemoveRole) => action.payload),
-        switchMap((request: number) =>
-            this.roleService.delete(request)
+        map((action: RemoveRole) => action.payload.roleId),
+        switchMap((roleId: number) =>
+            this.roleService.delete(roleId)
             .pipe(
-                map(response => new RemoveRoleSuccess(request)),
-                catchError(error => of(new RemoveRoleFail(error)))
+                map(response => new RemoveRoleSuccess({roleId: roleId})),
+                catchError(error => of(new RemoveRoleFail({errorMessage: error})))
             )
         )
     );
@@ -94,7 +94,7 @@ export class RoleEffects {
             this.roleService.getAll()
             .pipe(
                 map((response: Role[]) => new LoadRolesSuccess(response)),
-                catchError(error => of(new LoadRolesFail(error)))
+                catchError(error => of(new LoadRolesFail({errorMessage: error})))
             )
         )
     );
@@ -106,7 +106,7 @@ export class RoleEffects {
             this.roleService.assignPermission(action.payload.roleId, action.payload.permissionId)
             .pipe(
                 map(response => new AssignPermissionSuccess(action.payload)),
-                catchError(error => of(new AssignPermissionFail(error)))
+                catchError(error => of(new AssignPermissionFail({errorMessage: error})))
             )
         )
     );
@@ -118,7 +118,7 @@ export class RoleEffects {
             this.roleService.unassignPermission(action.payload.roleId, action.payload.permissionId)
             .pipe(
                 map(response => new UnassignPermissionSuccess(action.payload)),
-                catchError(error => of(new UnassignPermissionFail(error)))
+                catchError(error => of(new UnassignPermissionFail({errorMessage: error})))
             )
         )
     );

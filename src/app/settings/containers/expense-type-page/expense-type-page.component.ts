@@ -9,7 +9,6 @@ import * as fromCore from '../../../core/state/reducers';
 import * as pages from '../../../core/state/actions/pages';
 import { State } from '../../../state/reducers';
 import { ExpenseTypeModalNames } from '../../definitions/expenseTypeModalNames.const';
-import { DeleteExpenseType } from './../../models/requests/deleteExpenseType.model';
 import { ModifyExpenseType } from './../../models/requests/modifyExpenseType.model';
 import { CreateExpenseType } from './../../models/requests/createExpenseType.model';
 
@@ -57,7 +56,7 @@ export class ExpenseTypePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new expenseType.LoadExpenseTypes(1));
+    this.store.dispatch(new expenseType.LoadExpenseTypes({userId: 1}));
   }
 
   createType(command: CreateExpenseType) {
@@ -70,8 +69,8 @@ export class ExpenseTypePageComponent implements OnInit {
     this.store.dispatch(new expenseType.UpdateExpenseType(command));
   }
 
-  deleteType(command: DeleteExpenseType) {
-    this.store.dispatch(new expenseType.RemoveExpenseType(command));
+  deleteType(id: number) {
+    this.store.dispatch(new expenseType.RemoveExpenseType({expenseTypeId: id}));
   }
 
   addType() {
@@ -79,7 +78,7 @@ export class ExpenseTypePageComponent implements OnInit {
   }
 
   updateType(id: number) {
-    this.store.dispatch(new expenseType.SelectExpenseType(id));
+    this.store.dispatch(new expenseType.SelectExpenseType({expenseTypeId: id}));
     this.openModal(ExpenseTypeModalNames.UPDATE_EXPENSETYPE_DIALOG);
   }
 
@@ -92,10 +91,10 @@ export class ExpenseTypePageComponent implements OnInit {
   }
 
   private openModal(name: string) {
-    this.store.dispatch(new pages.OpenModal(name));
+    this.store.dispatch(new pages.OpenModal({modalName: name}));
   }
 
   private closeModal(name: string) {
-    this.store.dispatch(new pages.CloseModal(name));
+    this.store.dispatch(new pages.CloseModal({modalName: name}));
   }
 }

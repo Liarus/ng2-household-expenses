@@ -11,7 +11,6 @@ import { SavingType } from './../../models/savingType.model';
 import { State } from '../../../state/reducers';
 import { CreateSavingType } from '../../models/requests/createSavingType.model';
 import { SavingTypeModalNames } from '../../definitions/savingTypeModalNames.const';
-import { DeleteSavingType } from './../../models/requests/deleteSavingType.model';
 import { ModifySavingType } from './../../models/requests/modifySavingType.model';
 
 @Component({
@@ -57,7 +56,7 @@ export class SavingTypePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new savingType.LoadSavingTypes(1));
+    this.store.dispatch(new savingType.LoadSavingTypes({userId: 1}));
   }
 
   createType(command: CreateSavingType) {
@@ -70,8 +69,8 @@ export class SavingTypePageComponent implements OnInit {
     this.store.dispatch(new savingType.UpdateSavingType(command));
   }
 
-  deleteType(command: DeleteSavingType) {
-    this.store.dispatch(new savingType.RemoveSavingType(command));
+  deleteType(id: number) {
+    this.store.dispatch(new savingType.RemoveSavingType({savingTypeId: id}));
   }
 
   addType() {
@@ -79,7 +78,7 @@ export class SavingTypePageComponent implements OnInit {
   }
 
   updateType(id: number) {
-    this.store.dispatch(new savingType.SelectSavingType(id));
+    this.store.dispatch(new savingType.SelectSavingType({savingTypeId: id}));
     this.openModal(SavingTypeModalNames.UPDATE_SAVINGTYPE_DIALOG);
   }
 
@@ -92,10 +91,10 @@ export class SavingTypePageComponent implements OnInit {
   }
 
   private openModal(name: string) {
-    this.store.dispatch(new pages.OpenModal(name));
+    this.store.dispatch(new pages.OpenModal({modalName: name}));
   }
 
   private closeModal(name: string) {
-    this.store.dispatch(new pages.CloseModal(name));
+    this.store.dispatch(new pages.CloseModal({modalName: name}));
   }
 }

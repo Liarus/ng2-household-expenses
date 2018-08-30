@@ -41,7 +41,7 @@ export class PermissionEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddPermissionFail(error)))
+                catchError(error => of(new AddPermissionFail({errorMessage: error})))
             )
         )
     );
@@ -61,7 +61,7 @@ export class PermissionEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdatePermissionFail(error)))
+                catchError(error => of(new UpdatePermissionFail({errorMessage: error})))
             )
         )
     );
@@ -69,12 +69,12 @@ export class PermissionEffects {
     @Effect()
     deleteHousehold = this.actions.pipe(
         ofType(PermissionActionTypes.RemovePermission),
-        map((action: RemovePermission) => action.payload),
-        switchMap((request: number) =>
-            this.permissionService.delete(request)
+        map((action: RemovePermission) => action.payload.permissionId),
+        switchMap((permissionId: number) =>
+            this.permissionService.delete(permissionId)
             .pipe(
-                map(response => new RemovePermissionSuccess(request)),
-                catchError(error => of(new RemovePermissionFail(error)))
+                map(response => new RemovePermissionSuccess({permissionId: permissionId})),
+                catchError(error => of(new RemovePermissionFail({errorMessage: error})))
             )
         )
     );
@@ -86,7 +86,7 @@ export class PermissionEffects {
             this.permissionService.getAll()
             .pipe(
                 map((response: Permission[]) => new LoadPermissionsSuccess(response)),
-                catchError(error => of(new LoadPermissionsFail(error)))
+                catchError(error => of(new LoadPermissionsFail({errorMessage: error})))
             )
         )
     );

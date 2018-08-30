@@ -6,18 +6,18 @@ import { ModifyCredentialType } from '../../models/requests/modifyCredentialType
 
 export enum CredentialTypeActionTypes {
     AddCredentialType = '[CredentialType] Add Credential Type',
-    AddCredentialTypeSuccess = '[CredentialType] Add Credential Type Success',
-    AddCredentialTypeFail = '[CredentialType] Add Credential Type Fail',
+    AddCredentialTypeSuccess = '[CredentialType API] Add Credential Type Success',
+    AddCredentialTypeFail = '[CredentialType API] Add Credential Type Fail',
     UpdateCredentialType = '[CredentialType] Update Credential Type',
-    UpdateCredentialTypeSuccess = '[CredentialType] Update Credential Type Success',
-    UpdateCredentialTypeFail = '[CredentialType] Update Credential Type Fail',
+    UpdateCredentialTypeSuccess = '[CredentialType API] Update Credential Type Success',
+    UpdateCredentialTypeFail = '[CredentialType API] Update Credential Type Fail',
     RemoveCredentialType = '[CredentialType] Remove Credential Type',
-    RemoveCredentialTypeSuccess = '[CredentialType] Remove Credential Type Success',
-    RemoveCredentialTypeFail = '[CredentialType] Remove Credential Type Fail',
+    RemoveCredentialTypeSuccess = '[CredentialType API] Remove Credential Type Success',
+    RemoveCredentialTypeFail = '[CredentialType API] Remove Credential Type Fail',
     SelectCredentialType = '[CredentialType] Select Credential Type',
     LoadCredentialTypes = '[CredentialType] Load Credential Type',
-    LoadCredentialTypesSuccess = '[CredentialType] Load Credential Type Success',
-    LoadCredentialTypesFail = '[CredentialType] Load Credential Type Fail'
+    LoadCredentialTypesSuccess = '[CredentialType API] Load Credential Type Success',
+    LoadCredentialTypesFail = '[CredentialType API] Load Credential Type Fail'
 }
 
 export class AddCredentialType implements Action {
@@ -37,7 +37,7 @@ export class AddCredentialTypeSuccess implements Action {
 export class AddCredentialTypeFail implements Action {
     readonly type = CredentialTypeActionTypes.AddCredentialTypeFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
@@ -51,7 +51,7 @@ export class UpdateCredentialType implements Action {
 export class UpdateCredentialTypeFail implements Action {
     readonly type = CredentialTypeActionTypes.UpdateCredentialTypeFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
@@ -65,28 +65,28 @@ export class UpdateCredentialTypeSuccess implements Action {
 export class RemoveCredentialType implements Action {
     readonly type = CredentialTypeActionTypes.RemoveCredentialType;
 
-    constructor(public payload: number) {
+    constructor(public payload: {credentialTypeId: number}) {
     }
 }
 
 export class RemoveCredentialTypeSuccess implements Action {
     readonly type = CredentialTypeActionTypes.RemoveCredentialTypeSuccess;
 
-    constructor(public payload: number) {
+    constructor(public payload: {credentialTypeId: number}) {
     }
 }
 
 export class RemoveCredentialTypeFail implements Action {
     readonly type = CredentialTypeActionTypes.RemoveCredentialTypeFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
 export class SelectCredentialType implements Action {
     readonly type = CredentialTypeActionTypes.SelectCredentialType;
 
-    constructor(public payload: number) {
+    constructor(public payload: {credentialTypeId: number}) {
     }
 }
 
@@ -104,7 +104,7 @@ export class LoadCredentialTypesSuccess implements Action {
 export class LoadCredentialTypesFail implements Action {
     readonly type = CredentialTypeActionTypes.LoadCredentialTypesFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 

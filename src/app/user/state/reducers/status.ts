@@ -17,7 +17,7 @@ export function reducer(
         case StatusActionTypes.SelectActiveTabIndex:
             return {
                 ...state,
-                activeTabIndex: action.payload
+                activeTabIndex: action.payload.tabActiveIndex
             };
 
         default: {

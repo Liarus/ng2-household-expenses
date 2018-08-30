@@ -41,7 +41,7 @@ export class CredentialTypeEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddCredentialTypeFail(error)))
+                catchError(error => of(new AddCredentialTypeFail({errorMessage: error})))
             )
         )
     );
@@ -61,7 +61,7 @@ export class CredentialTypeEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateCredentialTypeFail(error)))
+                catchError(error => of(new UpdateCredentialTypeFail({errorMessage: error})))
             )
         )
     );
@@ -69,12 +69,12 @@ export class CredentialTypeEffects {
     @Effect()
     deleteHousehold = this.actions.pipe(
         ofType(CredentialTypeActionTypes.RemoveCredentialType),
-        map((action: RemoveCredentialType) => action.payload),
-        switchMap((request: number) =>
-            this.credentialTypeService.delete(request)
+        map((action: RemoveCredentialType) => action.payload.credentialTypeId),
+        switchMap((credentialTypeId: number) =>
+            this.credentialTypeService.delete(credentialTypeId)
             .pipe(
-                map(response => new RemoveCredentialTypeSuccess(request)),
-                catchError(error => of(new RemoveCredentialTypeFail(error)))
+                map(response => new RemoveCredentialTypeSuccess({credentialTypeId: credentialTypeId})),
+                catchError(error => of(new RemoveCredentialTypeFail({errorMessage: error})))
             )
         )
     );
@@ -86,7 +86,7 @@ export class CredentialTypeEffects {
             this.credentialTypeService.getAll()
             .pipe(
                 map((response: CredentialType[]) => new LoadCredentialTypesSuccess(response)),
-                catchError(error => of(new LoadCredentialTypesFail(error)))
+                catchError(error => of(new LoadCredentialTypesFail({errorMessage: error})))
             )
         )
     );

@@ -3,22 +3,21 @@ import { Action } from '@ngrx/store';
 import { CreateExpenseType } from '../../models/requests/createExpenseType.model';
 import { ExpenseType } from '../../models/expenseType.model';
 import { ModifyExpenseType } from '../../models/requests/modifyExpenseType.model';
-import { DeleteExpenseType } from '../../models/requests/deleteExpenseType.model';
 
 export enum ExpenseTypeActionTypes {
     AddExpenseType = '[ExpenseType] Add Expense Type',
-    AddExpenseTypeSuccess = '[ExpenseType] Add Expense Type Success',
-    AddExpenseTypeFail = '[ExpenseType] Add Expense Type Fail',
+    AddExpenseTypeSuccess = '[ExpenseType API] Add Expense Type Success',
+    AddExpenseTypeFail = '[ExpenseType API] Add Expense Type Fail',
     UpdateExpenseType = '[ExpenseType] Update Expense Type',
-    UpdateExpenseTypeSuccess = '[ExpenseType] Update Expense Type Success',
-    UpdateExpenseTypeFail = '[ExpenseType] Update Expense Type Fail',
+    UpdateExpenseTypeSuccess = '[ExpenseType API] Update Expense Type Success',
+    UpdateExpenseTypeFail = '[ExpenseType API] Update Expense Type Fail',
     RemoveExpenseType = '[ExpenseType] Remove Expense Type',
-    RemoveExpenseTypeSuccess = '[ExpenseType] Remove Expense Type Success',
-    RemoveExpenseTypeFail = '[ExpenseType] Remove Expense Type Fail',
+    RemoveExpenseTypeSuccess = '[ExpenseType API] Remove Expense Type Success',
+    RemoveExpenseTypeFail = '[ExpenseType API] Remove Expense Type Fail',
     SelectExpenseType = '[ExpenseType] Select Expense Type',
     LoadExpenseTypes = '[ExpenseType] Load Expense Types',
-    LoadExpenseTypesSuccess = '[ExpenseType] Load Expense Types Success',
-    LoadExpenseTypesFail = '[ExpenseType] Load Expense Types Fail'
+    LoadExpenseTypesSuccess = '[ExpenseType API] Load Expense Types Success',
+    LoadExpenseTypesFail = '[ExpenseType API] Load Expense Types Fail'
 }
 
 export class AddExpenseType implements Action {
@@ -38,7 +37,7 @@ export class AddExpenseTypeSuccess implements Action {
 export class AddExpenseTypeFail implements Action {
     readonly type = ExpenseTypeActionTypes.AddExpenseTypeFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
@@ -52,7 +51,7 @@ export class UpdateExpenseType implements Action {
 export class UpdateExpenseTypeFail implements Action {
     readonly type = ExpenseTypeActionTypes.UpdateExpenseTypeFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
@@ -66,35 +65,35 @@ export class UpdateExpenseTypeSuccess implements Action {
 export class RemoveExpenseType implements Action {
     readonly type = ExpenseTypeActionTypes.RemoveExpenseType;
 
-    constructor(public payload: DeleteExpenseType) {
+    constructor(public payload: {expenseTypeId: number}) {
     }
 }
 
 export class RemoveExpenseTypeSuccess implements Action {
     readonly type = ExpenseTypeActionTypes.RemoveExpenseTypeSuccess;
 
-    constructor(public payload: number) {
+    constructor(public payload: {expenseTypeId: number}) {
     }
 }
 
 export class RemoveExpenseTypeFail implements Action {
     readonly type = ExpenseTypeActionTypes.RemoveExpenseTypeFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 
 export class SelectExpenseType implements Action {
     readonly type = ExpenseTypeActionTypes.SelectExpenseType;
 
-    constructor(public payload: number) {
+    constructor(public payload: {expenseTypeId: number}) {
     }
 }
 
 export class LoadExpenseTypes implements Action {
     readonly type = ExpenseTypeActionTypes.LoadExpenseTypes;
 
-    constructor(public payload: number) {
+    constructor(public payload: {userId: number}) {
     }
 }
 
@@ -108,7 +107,7 @@ export class LoadExpenseTypesSuccess implements Action {
 export class LoadExpenseTypesFail implements Action {
     readonly type = ExpenseTypeActionTypes.LoadExpenseTypesFail;
 
-    constructor(public payload: string) {
+    constructor(public payload: {errorMessage: string}) {
     }
 }
 

@@ -42,7 +42,7 @@ export function reducer(
         case HouseholdActionTypes.UpdateHouseholdFail:
             return {
                 ...state,
-                errorMessage: action.payload,
+                errorMessage: action.payload.errorMessage,
                 loading: false
             };
 
@@ -64,7 +64,7 @@ export function reducer(
             );
 
         case HouseholdActionTypes.RemoveHouseholdSuccess:
-            return adapter.removeOne(action.payload, {
+            return adapter.removeOne(action.payload.householdId, {
                 ...state,
                 loading: false
             });
@@ -79,7 +79,7 @@ export function reducer(
             return {
                 ...state,
                 errorMessage: '',
-                selectedHouseholdId: action.payload
+                selectedHouseholdId: action.payload.householdId
             };
 
         default: {

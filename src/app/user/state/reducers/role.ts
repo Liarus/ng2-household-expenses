@@ -45,7 +45,7 @@ export function reducer(
         case RoleActionTypes.UnassignPermissionFail:
             return {
                 ...state,
-                errorMessage: action.payload,
+                errorMessage: action.payload.errorMessage,
                 loading: false
             };
 
@@ -67,7 +67,7 @@ export function reducer(
             );
 
         case RoleActionTypes.RemoveRoleSuccess:
-            return adapter.removeOne(action.payload, {
+            return adapter.removeOne(action.payload.roleId, {
                 ...state,
                 loading: false
             });
@@ -82,7 +82,7 @@ export function reducer(
             return {
                 ...state,
                 errorMessage: '',
-                selectedRoleId: action.payload
+                selectedRoleId: action.payload.roleId
             };
 
         case RoleActionTypes.AssignPermissionSuccess: {

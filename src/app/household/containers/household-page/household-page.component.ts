@@ -12,7 +12,6 @@ import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
 import { State } from '../../../state/reducers';
 import { HouseholdModalNames } from '../../definitions/householdModalNames.const';
-import { DeleteHousehold } from '../../models/requests/deleteHousehold.model';
 
 @Component({
   selector: 'app-household-page',
@@ -68,7 +67,7 @@ export class HouseholdPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new household.LoadHouseholds(1));
+    this.store.dispatch(new household.LoadHouseholds({userId: 1}));
   }
 
   createHousehold(command: CreateHousehold) {
@@ -81,8 +80,8 @@ export class HouseholdPageComponent implements OnInit {
     this.store.dispatch(new household.UpdateHousehold(command));
   }
 
-  deleteHousehold(command: DeleteHousehold) {
-    this.store.dispatch(new household.RemoveHousehold(command));
+  deleteHousehold(id: number) {
+    this.store.dispatch(new household.RemoveHousehold({householdId: id}));
   }
 
   addHousehold() {
@@ -90,7 +89,7 @@ export class HouseholdPageComponent implements OnInit {
   }
 
   updateHousehold(id: number) {
-    this.store.dispatch(new household.SelectHousehold(id));
+    this.store.dispatch(new household.SelectHousehold({householdId: id}));
     this.openModal(HouseholdModalNames.UPDATE_HOUSEHOLD_DIALOG);
   }
 
@@ -103,10 +102,10 @@ export class HouseholdPageComponent implements OnInit {
   }
 
   private openModal(name: string) {
-    this.store.dispatch(new pages.OpenModal(name));
+    this.store.dispatch(new pages.OpenModal({modalName: name}));
   }
 
   private closeModal(name: string) {
-    this.store.dispatch(new pages.CloseModal(name));
+    this.store.dispatch(new pages.CloseModal({modalName: name}));
   }
 }

@@ -42,7 +42,7 @@ export function reducer(
         case ExpenseTypeActionTypes.UpdateExpenseTypeFail:
             return {
                 ...state,
-                errorMessage: action.payload,
+                errorMessage: action.payload.errorMessage,
                 loading: false
             };
 
@@ -64,7 +64,7 @@ export function reducer(
             );
 
         case ExpenseTypeActionTypes.RemoveExpenseTypeSuccess:
-            return adapter.removeOne(action.payload, {
+            return adapter.removeOne(action.payload.expenseTypeId, {
                 ...state,
                 loading: false
             });
@@ -79,7 +79,7 @@ export function reducer(
             return {
                 ...state,
                 errorMessage: '',
-                selectedExpenseTypeId: action.payload
+                selectedExpenseTypeId: action.payload.expenseTypeId
             };
 
         default: {

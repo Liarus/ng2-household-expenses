@@ -21,7 +21,6 @@ import {
 } from '../actions/household';
 import { CreateHousehold } from '../../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../../models/requests/modifyHousehold.model';
-import { DeleteHousehold } from './../../models/requests/deleteHousehold.model';
 import { Household } from './../../models/household.model';
 
 @Injectable()
@@ -47,7 +46,7 @@ export class HouseholdEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddHouseholdFail(error)))
+                catchError(error => of(new AddHouseholdFail({errorMessage: error})))
             )
         )
     );
@@ -72,7 +71,7 @@ export class HouseholdEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateHouseholdFail(error)))
+                catchError(error => of(new UpdateHouseholdFail({errorMessage: error})))
             )
         )
     );
@@ -80,12 +79,12 @@ export class HouseholdEffects {
     @Effect()
     deleteHousehold = this.actions.pipe(
         ofType(HouseholdActionTypes.RemoveHousehold),
-        map((action: RemoveHousehold) => action.payload),
-        switchMap((request: DeleteHousehold) =>
-            this.householdService.delete(request)
+        map((action: RemoveHousehold) => action.payload.householdId),
+        switchMap((householdId: number) =>
+            this.householdService.delete(householdId)
             .pipe(
-                map(response => new RemoveHouseholdSuccess(request.id)),
-                catchError(error => of(new RemoveHouseholdFail(error)))
+                map(response => new RemoveHouseholdSuccess({householdId: householdId})),
+                catchError(error => of(new RemoveHouseholdFail({errorMessage: error})))
             )
         )
     );
@@ -93,12 +92,12 @@ export class HouseholdEffects {
     @Effect()
     loadHouseholds = this.actions.pipe(
         ofType(HouseholdActionTypes.LoadHouseholds),
-        map((action: LoadHouseholds) => action.payload),
+        map((action: LoadHouseholds) => action.payload.userId),
         switchMap((userId: number) =>
             this.householdService.getAllForUser(userId)
             .pipe(
                 map((response: Household[]) => new LoadHouseholdsSuccess(response)),
-                catchError(error => of(new LoadHouseholdsFail(error)))
+                catchError(error => of(new LoadHouseholdsFail({errorMessage: error})))
             )
         )
     );

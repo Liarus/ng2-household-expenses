@@ -75,8 +75,8 @@ export class RolePageComponent implements OnInit {
     this.store.dispatch(new role.UpdateRole(command));
   }
 
-  deleteRole(roleId: number) {
-    this.store.dispatch(new role.RemoveRole(roleId));
+  deleteRole(id: number) {
+    this.store.dispatch(new role.RemoveRole({roleId: id}));
   }
 
   addRole() {
@@ -84,7 +84,7 @@ export class RolePageComponent implements OnInit {
   }
 
   updateRole(id: number) {
-    this.store.dispatch(new role.SelectRole(id));
+    this.store.dispatch(new role.SelectRole({roleId: id}));
     this.openModal(RoleModalNames.UPDATE_ROLE_DIALOG);
   }
 
@@ -97,10 +97,10 @@ export class RolePageComponent implements OnInit {
   }
 
   private openModal(name: string) {
-    this.store.dispatch(new pages.OpenModal(name));
+    this.store.dispatch(new pages.OpenModal({modalName: name}));
   }
 
   private closeModal(name: string) {
-    this.store.dispatch(new pages.CloseModal(name));
+    this.store.dispatch(new pages.CloseModal({modalName: name}));
   }
 }

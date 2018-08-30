@@ -7,7 +7,7 @@ export enum StatusActionTypes {
 export class SelectActiveTabIndex implements Action {
     readonly type = StatusActionTypes.SelectActiveTabIndex;
 
-    constructor(public payload: number) {
+    constructor(public payload: {tabActiveIndex: number}) {
     }
 }
 

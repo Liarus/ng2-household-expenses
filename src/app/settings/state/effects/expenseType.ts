@@ -21,7 +21,6 @@ import {
 } from '../actions/expenseType';
 import { CreateExpenseType } from '../../models/requests/createExpenseType.model';
 import { ModifyExpenseType } from './../../models/requests/modifyExpenseType.model';
-import { DeleteExpenseType } from './../../models/requests/deleteExpenseType.model';
 import { ExpenseType } from './../../models/expenseType.model';
 
 @Injectable()
@@ -42,7 +41,7 @@ export class ExpenseTypeEffects {
                         version: 1,
                     })
                 ),
-                catchError(error => of(new AddExpenseTypeFail(error)))
+                catchError(error => of(new AddExpenseTypeFail({errorMessage: error})))
             )
         )
     );
@@ -62,7 +61,7 @@ export class ExpenseTypeEffects {
                         version: request.version + 1,
                     })
                 ),
-                catchError(error => of(new UpdateExpenseTypeFail(error)))
+                catchError(error => of(new UpdateExpenseTypeFail({errorMessage: error})))
             )
         )
     );
@@ -70,12 +69,12 @@ export class ExpenseTypeEffects {
     @Effect()
     deleteExpenseType = this.actions.pipe(
         ofType(ExpenseTypeActionTypes.RemoveExpenseType),
-        map((action: RemoveExpenseType) => action.payload),
-        switchMap((request: DeleteExpenseType) =>
-            this.expenseTypeService.delete(request)
+        map((action: RemoveExpenseType) => action.payload.expenseTypeId),
+        switchMap((expenseTypeId: number) =>
+            this.expenseTypeService.delete(expenseTypeId)
             .pipe(
-                map(response => new RemoveExpenseTypeSuccess(request.id)),
-                catchError(error => of(new RemoveExpenseTypeFail(error)))
+                map(response => new RemoveExpenseTypeSuccess({expenseTypeId: expenseTypeId})),
+                catchError(error => of(new RemoveExpenseTypeFail({errorMessage: error})))
             )
         )
     );
@@ -83,12 +82,12 @@ export class ExpenseTypeEffects {
     @Effect()
     loadExpenseTypes = this.actions.pipe(
         ofType(ExpenseTypeActionTypes.LoadExpenseTypes),
-        map((action: LoadExpenseTypes) => action.payload),
+        map((action: LoadExpenseTypes) => action.payload.userId),
         switchMap((userId: number) =>
             this.expenseTypeService.getAllForUser(userId)
             .pipe(
                 map((response: ExpenseType[]) => new LoadExpenseTypesSuccess(response)),
-                catchError(error => of(new LoadExpenseTypesFail(error)))
+                catchError(error => of(new LoadExpenseTypesFail({errorMessage: error})))
             )
         )
     );

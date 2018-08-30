@@ -42,7 +42,7 @@ export function reducer(
         case SavingTypeActionTypes.UpdateSavingTypeFail:
             return {
                 ...state,
-                errorMessage: action.payload,
+                errorMessage: action.payload.errorMessage,
                 loading: false
             };
 
@@ -64,7 +64,7 @@ export function reducer(
             );
 
         case SavingTypeActionTypes.RemoveSavingTypeSuccess:
-            return adapter.removeOne(action.payload, {
+            return adapter.removeOne(action.payload.savingTypeId, {
                 ...state,
                 loading: false
             });
@@ -79,7 +79,7 @@ export function reducer(
             return {
                 ...state,
                 errorMessage: '',
-                selectedSavingTypeId: action.payload
+                selectedSavingTypeId: action.payload.savingTypeId
             };
 
         default: {

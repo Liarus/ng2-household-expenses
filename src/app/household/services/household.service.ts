@@ -6,7 +6,6 @@ import { Household } from '../models/household.model';
 import { AppConfig } from '../../shared/models/appConfig.model';
 import { CreateHousehold } from './../models/requests/createHousehold.model';
 import { ModifyHousehold } from './../models/requests/modifyHousehold.model';
-import { DeleteHousehold } from './../models/requests/deleteHousehold.model';
 
 @Injectable()
 export class HouseholdService {
@@ -36,9 +35,9 @@ export class HouseholdService {
         );
     }
 
-    delete(request: DeleteHousehold): Observable<any> {
+    delete(id: number): Observable<any> {
         return this.httpService.delete(
-            `${this.appConfig.BASE_URL}${this.householdEndpoint}/${request.id}`
+            `${this.appConfig.BASE_URL}${this.householdEndpoint}/${id}`
         );
     }
 }

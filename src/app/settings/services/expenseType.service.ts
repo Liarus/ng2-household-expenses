@@ -6,7 +6,6 @@ import { ExpenseType } from '../models/expenseType.model';
 import { AppConfig } from '../../shared/models/appConfig.model';
 import { CreateExpenseType } from './../models/requests/createExpenseType.model';
 import { ModifyExpenseType } from './../models/requests/modifyExpenseType.model';
-import { DeleteExpenseType } from './../models/requests/deleteExpenseType.model';
 
 @Injectable()
 export class ExpenseTypeService {
@@ -36,9 +35,9 @@ export class ExpenseTypeService {
         );
     }
 
-    delete(request: DeleteExpenseType): Observable<any> {
+    delete(id: number): Observable<any> {
         return this.httpService.delete(
-            `${this.appConfig.BASE_URL}${this.expenseTypeEndpoint}/${request.id}`
+            `${this.appConfig.BASE_URL}${this.expenseTypeEndpoint}/${id}`
         );
     }
 }
